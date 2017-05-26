@@ -1,2 +1,2 @@
 # ScoreAPI
-web service for score
+Web Service For Score
