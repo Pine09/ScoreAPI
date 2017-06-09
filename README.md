@@ -1,2 +1,2 @@
 # ScoreAPI
-Web Service For Score
+Web Service For Academic
