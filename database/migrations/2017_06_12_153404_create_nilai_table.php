@@ -19,7 +19,8 @@ class CreateNilaiTable extends Migration
           $table->foreign('mahasiswa_id')->references('id')->on('mahasiswa');
           $table->integer('jadwal_id')->unsigned();
           $table->foreign('jadwal_id')->references('id')->on('jadwal');
-          $table->string('score');
+          $table->string('score')->nullable();
+          $table->string('bobot');
           $table->timestamps();
         });
     }

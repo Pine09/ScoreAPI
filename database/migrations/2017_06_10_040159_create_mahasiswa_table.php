@@ -17,15 +17,16 @@ class CreateMahasiswaTable extends Migration
         Schema::create('mahasiswa', function (Blueprint $table) {
           $table->increments('id');
           $table->string('NIM')->unique();
-          $table->string('nama_mahasiswa');
-          $table->string('alamat');
-          $table->string('jenis_kelamin');
+          $table->string('nama_depan');
+          $table->string('nama_belakang');
           $table->string('email')->unique();
+          $table->text('alamat');
+          $table->string('jenis_kelamin');
           $table->integer('jurusan_id')->unsigned();
           $table->foreign('jurusan_id')->references('id')->on('jurusan');
+          $table->integer('konsentrasi_id')->unsigned()->nullable();
+          $table->foreign('konsentrasi_id')->references('id')->on('konsentrasi');
           $table->string('angkatan');
-          $table->integer('users_id')->unsigned();
-          $table->foreign('users_id')->references('id')->on('users');
           $table->timestamps();
         });
     }

@@ -16,10 +16,11 @@ class CreateKonsentrasiTable extends Migration
     {
         Schema::create('konsentrasi', function (Blueprint $table) {
           $table->increments('id');
-          $table->string('nama_konsentrasi');
+          $table->string('konsentrasi_code')->unique();
+          $table->string('konsentrasi_name');
           $table->integer('jurusan_id')->unsigned();
-          $table->timestamps();
           $table->foreign('jurusan_id')->references('id')->on('jurusan');
+          $table->timestamps();
         });
     }
 

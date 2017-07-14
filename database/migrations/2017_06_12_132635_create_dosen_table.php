@@ -16,12 +16,11 @@ class CreateDosenTable extends Migration
         Schema::create('dosen', function (Blueprint $table){
           $table->increments('id');
           $table->string('NIDN')->unique();
-          $table->string('nama_dosen');
-          $table->string('alamat');
-          $table->string('jenis_kelamin');
+          $table->string('nama_depan');
+          $table->string('nama_belakang');
           $table->string('email')->unique();
-          $table->integer('users_id')->unsigned();
-          $table->foreign('users_id')->references('id')->on('users');
+          $table->text('alamat');
+          $table->string('jenis_kelamin');
           $table->timestamps();
         });
     }

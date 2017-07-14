@@ -15,11 +15,11 @@ class CreateJadwalTable extends Migration
     {
         Schema::create('jadwal', function (Blueprint $table){
           $table->increments('id');
-          $table->string('hari');
           $table->integer('dosen_id')->unsigned();
           $table->foreign('dosen_id')->references('id')->on('dosen');
           $table->integer('matkul_id')->unsigned();
           $table->foreign('matkul_id')->references('id')->on('matkul');
+          $table->date('date');
           $table->timestamps();
         });
     }
