@@ -8,7 +8,7 @@ class dosen extends Model
 {
     protected $table = "dosen";
 
-    public function credentials() {
+    public function credential() {
       return $this->hasOne(user::class, 'NI', 'NIDN');
     }
 

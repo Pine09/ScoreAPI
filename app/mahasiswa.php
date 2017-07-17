@@ -8,7 +8,7 @@ class mahasiswa extends Model
 {
     protected $table = "mahasiswa";
 
-    public function credentials() {
+    public function credential() {
       return $this->hasOne(User::class, 'NI', 'NIM');
     }
 
