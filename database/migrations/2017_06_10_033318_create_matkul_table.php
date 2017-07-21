@@ -17,6 +17,7 @@ class CreateMatkulTable extends Migration
           $table->increments('id');
           $table->string('matkul_code');
           $table->string('matkul_name');
+          $table->string('bobot');
           $table->timestamps();
         });
     }

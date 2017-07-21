@@ -16,12 +16,17 @@ class jadwal extends Model
       return $this->belongsTo(dosen::class);
     }
 
-    public function KRS() {
-      return $this->hasMany(KRS::class);
-    }
+   //  public function KRS() {
+   //    return $this->hasMany(KRS::class);
+   //  }
 
     // ***
     public function nilai() {
       return $this->hasMany(nilai::class);
     }
+
+    // ***
+    public function mahasiswa() {
+      return $this->belongsToMany(mahasiswa::class, 'KRS');
+   }
 }

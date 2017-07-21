@@ -19,7 +19,6 @@ class CreateKRSTable extends Migration
           $table->foreign('jadwal_id')->references('id')->on('jadwal');
           $table->integer('mahasiswa_id')->unsigned();
           $table->foreign('mahasiswa_id')->references('id')->on('mahasiswa');
-          $table->string('status');
           $table->timestamps();
         });
     }

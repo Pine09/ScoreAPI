@@ -16,5 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::resource('/dosen', 'DosenController', ['except' => ['create', 'edit']]);
+Route::post('login_check', 'MahasiswaController@authenticate');
+// Route::group(['middleware' => 'jwt.auth'], function() {
+   Route::resource('/dosen', 'DosenController', ['except' => ['create', 'edit']]);
+   Route::resource('/mahasiswa', 'MahasiswaController', ['except' => ['create', 'edit']]);
+// });

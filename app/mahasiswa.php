@@ -24,7 +24,11 @@ class mahasiswa extends Model
       return $this->hasMany(nilai::class);
     }
 
-    public function KRS() {
-      return $this->hasMany(KRS::class);
-    }
+   //  public function KRS() {
+   //    return $this->hasMany(KRS::class);
+   //  }
+
+    public function jadwal() {
+      return $this->belongsToMany(jadwal::class, 'KRS');
+   }
 }

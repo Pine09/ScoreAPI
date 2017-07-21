@@ -19,7 +19,8 @@ class CreateJadwalTable extends Migration
           $table->foreign('dosen_id')->references('id')->on('dosen');
           $table->integer('matkul_id')->unsigned();
           $table->foreign('matkul_id')->references('id')->on('matkul');
-          $table->date('date');
+          $table->string('day');
+          $table->string('status');
           $table->timestamps();
         });
     }
