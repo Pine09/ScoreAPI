@@ -3,84 +3,44 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Dosen;
+use Auth;
+use App\Http\Requests\StoreNilai;
 
 class DosenController extends Controller
 {
-  /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $data_dosen = Dosen::paginate();
-        return response()->json($data_dosen);
+    public function index(){
+      $user=Auth::user();
+      $user=$user->dosen;
+      return response()->json($user->toArray());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function jadwal(){
+      $user=Auth::user();
+      $jadwal=$user->dosen->jadwal;// ingat ganti status jadi on going ato ended
+      $jadwal->load('matkul');
+      return response()->json($jadwal->toArray());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function insertNilai(StoreNilai $request){
+      $user = Auth::user();
+      $jadwal = $user->dosen->jadwal->where('id', $request->input('jadwal_id'))->first();
+      $nilai = $jadwal->nilai->where('mahasiswa_id', $request->input('mahasiswa_id'))->first();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+      // $nilai = $user->dosen->jadwal->load(['nilai' => function($query) use ($request){
+      //   $query->where('mahasiswa_id', $request->input('mahasiswa_id'));
+      // }])->first();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+      // $nilai = Nilai::where([
+      //   ['mahasiswa_id', $request->input('mahasiswa_id')],
+      //   ['jadwal_id', $request->input('jadwal_id')],
+      // ])->first();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+      // $nilai = $nilai::where('mahasiswa_id', $request->input('mahasiswa_id'))->first();
+
+      $nilai->score = $request->input('score');
+      $nilai->save();
+
+      return response()->json($nilai->toArray());
     }
 }

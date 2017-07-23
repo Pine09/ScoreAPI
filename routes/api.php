@@ -16,11 +16,22 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::post('/login', 'AuthController@authenticate');
+
 Route::group(['middleware' => 'jwt.auth'], function() {
    Route::group(['prefix'=>'/mahasiswa'],function(){
 		Route::get('/', 'MahasiswaController@index');//untuk lihat data diri
 		Route::get('/jadwal','MahasiswaController@jadwal');//untuk lihat jadwal
    });
-   
+
+   Route::group(['prefix'=> '/dosen'], function(){
+     Route::get('/', 'DosenController@index');
+     Route::get('/jadwal', 'DosenController@jadwal');
+     Route::post('/nilai', 'DosenController@insertNilai');
+   });
+
+   Route::group(['prefix'=> '/admin'], function(){
+     Route::resource('/mahasiswa', 'AdMahasiswaController', ['except' => ['create', 'edit']]);
+   });
 });
