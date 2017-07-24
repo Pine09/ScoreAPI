@@ -33,5 +33,9 @@ Route::group(['middleware' => 'jwt.auth'], function() {
 
    Route::group(['prefix'=> '/admin'], function(){
      Route::resource('/mahasiswa', 'AdMahasiswaController', ['except' => ['create', 'edit']]);
+     Route::resource('/dosen', 'AdDosenController', ['except' => ['create', 'edit']]);
+     Route::resource('/jadwal', 'AdJadwalController', ['except' => ['create', 'edit']]);
+     Route::resource('/matkul', 'AdMatkulController', ['except' => ['create', 'edit']]);
+     Route::resource('/KRS', 'AdKRSController', ['except' => ['create', 'edit']]);
    });
 });

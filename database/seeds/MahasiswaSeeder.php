@@ -22,6 +22,7 @@ class MahasiswaSeeder extends Seeder
            'jurusan_id' => '1',
            'konsentrasi_id' => '1',
            'angkatan' => '2015',
+           'kelas' => '15IS1',
            'created_at' => Carbon::now()
         ]);
         DB::table('mahasiswa')->insert([
@@ -34,6 +35,7 @@ class MahasiswaSeeder extends Seeder
            'jurusan_id' => '1',
            'konsentrasi_id' => '1',
            'angkatan' => '2015',
+           'kelas' => '15IS1',
            'created_at' => Carbon::now()
         ]);
         DB::table('mahasiswa')->insert([
@@ -46,6 +48,7 @@ class MahasiswaSeeder extends Seeder
            'jurusan_id' => '2',
            'konsentrasi_id' => null,
            'angkatan' => '2015',
+           'kelas' => '15IS2',
            'created_at' => Carbon::now()
         ]);
         DB::table('mahasiswa')->insert([
@@ -58,6 +61,7 @@ class MahasiswaSeeder extends Seeder
            'jurusan_id' => '2',
            'konsentrasi_id' => '3',
            'angkatan' => '2015',
+           'kelas' => '15IS3',
            'created_at' => Carbon::now()
         ]);
 

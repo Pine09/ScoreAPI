@@ -28,6 +28,7 @@ class CreateMahasiswaTable extends Migration
           $table->integer('konsentrasi_id')->unsigned()->nullable();
           $table->foreign('konsentrasi_id')->references('id')->on('konsentrasi');
           $table->string('angkatan');
+          $table->string('kelas');
           $table->timestamps();
         });
     }

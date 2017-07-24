@@ -48,6 +48,7 @@ class AdMahasiswaController extends Controller
         $new_stud->jurusan_id = $request->input('jurusan_id');
         $new_stud->konsentrasi_id = $request->input('konsentrasi_id');
         $new_stud->angkatan = $request->input('angkatan');
+        $new_stud->kelas = $request->input('kelas');
         $new_stud->save();
 
         return response()->json($new_stud);
@@ -88,7 +89,7 @@ class AdMahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreNilai $request, $id)
     {
       $old_stud = mahasiswa::find($id);
 

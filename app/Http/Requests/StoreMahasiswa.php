@@ -31,8 +31,8 @@ class StoreMahasiswa extends FormRequest
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
             'jurusan_id' => 'required',
-            'konsentrasi_id' => 'required',
             'angkatan' => 'required',
+            'kelas' => 'required',
         ];
     }
 
@@ -46,8 +46,8 @@ class StoreMahasiswa extends FormRequest
           'alamat.required' => 'alamat of Mahasiswa is required',
           'jenis_kelamin.required' => 'jenis_kelamin of Mahasiswa is required',
           'jurusan_id.required' => 'jurusan_id of Mahasiswa is required',
-          'konsentrasi_id.required' => 'konsentrasi_id of Mahasiswa is required',
           'angkatan.required' => 'angkatan of Mahasiswa is required',
+          'kelas.required' => 'kelas of Mahasiswa is required',
       ];
     }
 }

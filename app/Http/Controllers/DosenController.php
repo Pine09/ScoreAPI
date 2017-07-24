@@ -16,8 +16,7 @@ class DosenController extends Controller
 
     public function jadwal(){
       $user=Auth::user();
-      $jadwal=$user->dosen->jadwal;// ingat ganti status jadi on going ato ended
-      $jadwal->load('matkul');
+      $jadwal=$user->dosen->jadwal;
       return response()->json($jadwal->toArray());
     }
 
