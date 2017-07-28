@@ -33,7 +33,13 @@ class MahasiswaController extends Controller
     public function nilai(){
         $user=Auth::user();
         $nilai=$user->mahasiswa->nilai;
-        return response()->json($nilai->toArray());
+        foreach ($nilai as $nil) {
+            $nils=$nil->jadwal->matkul;
+        }
+        // $nilai->load('matkul');
+        return response()->json($nilai);
+        // $nilai->load('jadwal');
+        // return response()->json($nilai->toArray());
     }
 
 }

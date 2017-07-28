@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use JWTAuth;
 use Auth;
 
 class DosenMiddleware

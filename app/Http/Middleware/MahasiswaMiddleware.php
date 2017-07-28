@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class MahasiswaMiddleware
 {
@@ -15,7 +17,7 @@ class MahasiswaMiddleware
      */
    public function handle($request, Closure $next)
     {   $role=Auth::user()->role;
-        if($role!="Mahasiswa"){
+        if($role!="Student"){
            throw new AccessDeniedHttpException("Please Login With Student Account");    
         }
         return $next($request);

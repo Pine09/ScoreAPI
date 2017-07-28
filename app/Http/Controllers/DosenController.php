@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests\StoreNilai;
 use App\jadwal;
+use App\nilai;
 
 class DosenController extends Controller
 {
@@ -17,18 +18,26 @@ class DosenController extends Controller
 
     public function jadwal(){
       $user=Auth::user();
-      $jadwal=$user->dosen->jadwal;
+      $jadwal=$user->dosen->jadwal->where('status',"On Going");
       $jadwal->load('matkul');
       return response()->json($jadwal->toArray());
     }
 
     public function detailjadwal($idjadwal){
       $user=Auth::user();
-      $user=$user->dosen;
+      $user=$user->dosen->id;
       $jadwal=jadwal::find($idjadwal);
-      $nilai=$jadwal->nilai;
-      $nilai->load('mahasiswa');
-      return response()->json($nilai);
+      $jadwal->load('matkul');
+      $nilai=$jadwal->nilai->load("mahasiswa");
+      return response()->json($jadwal);
+      // $jadwal->load('matkul')->matkul_name;
+      // $namamatkul=$jadwal;
+      // $nilai->load('mahasiswa');
+      
+      // $nilai=$jadwal->nilai;  
+      // // $jadwal->load('matkul');
+      // $nilai->load('mahasiswa');
+      // return response()->json($jadwal);
 
     }
 

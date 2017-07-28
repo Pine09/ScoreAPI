@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class jadwal extends Model
 {
     protected $table = "jadwal";
-
+    // protected $hidden=["dosen_id"];
     public function matkul() {
-      return $this->belongsTo(matkul::class);
+      return $this->belongsTo(matkul::class)->select(array('id', 'matkul_name','bobot'));
     }
+ 
 
     public function dosen() {
       return $this->belongsTo(dosen::class);
