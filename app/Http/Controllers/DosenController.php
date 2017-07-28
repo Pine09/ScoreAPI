@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests\StoreNilai;
+use App\jadwal;
 
 class DosenController extends Controller
 {
@@ -17,7 +18,18 @@ class DosenController extends Controller
     public function jadwal(){
       $user=Auth::user();
       $jadwal=$user->dosen->jadwal;
+      $jadwal->load('matkul');
       return response()->json($jadwal->toArray());
+    }
+
+    public function detailjadwal($idjadwal){
+      $user=Auth::user();
+      $user=$user->dosen;
+      $jadwal=jadwal::find($idjadwal);
+      $nilai=$jadwal->nilai;
+      $nilai->load('mahasiswa');
+      return response()->json($nilai);
+
     }
 
     public function insertNilai(StoreNilai $request){

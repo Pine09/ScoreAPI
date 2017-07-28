@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class mahasiswa extends Model
 {
     protected $table = "mahasiswa";
+    protected $hidden=["created_at","jurusan_id","konsentrasi_id","updated_at"];
 
     public function credential() {
       return $this->hasOne(User::class, 'NI', 'NIM');

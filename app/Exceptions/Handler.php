@@ -4,7 +4,10 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -49,6 +52,10 @@ class Handler extends ExceptionHandler
         } else if ($e instanceof Tymon\JWTAuth\Exceptions\TokenInvalidException) {
             return response()->json(['token_invalid'], $e->getStatusCode());
         }
+         else if($e instanceof AccessDeniedHttpException){
+            return response()->json(['error'=>$e->getMessage()],$e->getStatusCode());
+        }
+   
 
         return parent::render($request, $e);
 }

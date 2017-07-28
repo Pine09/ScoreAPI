@@ -20,18 +20,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/login', 'AuthController@authenticate');
 
 Route::group(['middleware' => 'jwt.auth'], function() {
-   Route::group(['prefix'=>'/mahasiswa'],function(){
+
+   Route::group(['prefix'=>'/mahasiswa','middleware'=>'mhs.auth'],function(){
 		Route::get('/', 'MahasiswaController@index');//untuk lihat data diri
 		Route::get('/jadwal','MahasiswaController@jadwal');//untuk lihat jadwal
+    Route::get('/nilai','MahasiswaController@nilai');//untuk lihat daftar nilai
    });
 
-   Route::group(['prefix'=> '/dosen'], function(){
+   Route::group(['prefix'=> '/dosen','middleware'=>'dosen.auth'], function(){
      Route::get('/', 'DosenController@index');
-     Route::get('/jadwal', 'DosenController@jadwal');
-     Route::post('/nilai', 'DosenController@insertNilai');
+     Route::get('/jadwal', 'DosenController@jadwal');//untuk melihat jadwal mengajar dosen
+     Route::get('/nilai/{idjadwal}','DosenController@detailjadwal');//untuk melihat daftar mahasiswa di jadwal tersebut dan nilainya
+     Route::post('/nilai', 'DosenController@insertNilai');//untuk memasukkan nilai kedalam database
    });
 
-   Route::group(['prefix'=> '/admin'], function(){
+   Route::group(['prefix'=> '/admin','middleware'=>'admin.auth'], function(){
      Route::resource('/mahasiswa', 'AdMahasiswaController', ['except' => ['create', 'edit']]);
      Route::resource('/dosen', 'AdDosenController', ['except' => ['create', 'edit']]);
      Route::resource('/jadwal', 'AdJadwalController', ['except' => ['create', 'edit']]);

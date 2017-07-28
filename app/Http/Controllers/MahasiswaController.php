@@ -25,9 +25,15 @@ class MahasiswaController extends Controller
     public function jadwal()
     {
         $user=Auth::user();
-        $jadwal=$user->mahasiswa->jadwal->where('status','Regular');// ingat ganti status jadi on going ato ended
+        $jadwal=$user->mahasiswa->jadwal->where('status','On Going');// ingat ganti status jadi on going ato ended
         $jadwal->load('matkul');
         return response()->json($jadwal->toArray());
+    }
+
+    public function nilai(){
+        $user=Auth::user();
+        $nilai=$user->mahasiswa->nilai;
+        return response()->json($nilai->toArray());
     }
 
 }
