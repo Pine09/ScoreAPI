@@ -35,6 +35,8 @@ Route::group(['middleware' => 'jwt.auth'], function() {
    });
 
    Route::group(['prefix'=> '/admin','middleware'=>'admin.auth'], function(){
+     Route::post('/foto/mahasiswa/{id}', 'AdFotoController@insertFotoMhs');
+     Route::post('/foto/dosen/{id}', 'AdFotoController@insertFotoDsn');
      Route::resource('/mahasiswa', 'AdMahasiswaController', ['except' => ['create', 'edit']]);
      Route::resource('/dosen', 'AdDosenController', ['except' => ['create', 'edit']]);
      Route::resource('/jadwal', 'AdJadwalController', ['except' => ['create', 'edit']]);
