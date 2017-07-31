@@ -42,13 +42,6 @@ class AdMahasiswaController extends Controller
         $new_stud->NIM = $request->input('NIM');
         $new_stud->nama_depan = $request->input('nama_depan');
         $new_stud->nama_belakang = $request->input('nama_belakang');
-        if($request->hasFile('foto')){
-          if($request->foto->isValid()){
-              $path = $request->foto->store('public');
-                // $stud = mahasiswa::where('NIM', $nim);
-              $new_stud->foto = $path;
-          }
-        }
         $new_stud->email = $request->input('email');
         $new_stud->alamat = $request->input('alamat');
         $new_stud->jenis_kelamin = $request->input('jenis_kelamin');
