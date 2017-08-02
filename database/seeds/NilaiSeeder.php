@@ -15,31 +15,45 @@ class NilaiSeeder extends Seeder
         DB::table('nilai')->insert([
            'mahasiswa_id' => '1',
            'jadwal_id' => '1',
-           'score' => 'A',
+           'assignment' => '80',
+           'UTS' => '80',
+           'UAS' => '80',
+           'total' => 'A-'
            'created_at' => Carbon::now()
         ]);
         DB::table('nilai')->insert([
            'mahasiswa_id' => '2',
            'jadwal_id' => '1',
-           'score' => 'B',
+           'assignment' => '100',
+           'UTS' => '80',
+           'UAS' => '80',
+           'total' => 'A',
            'created_at' => Carbon::now()
         ]);
         DB::table('nilai')->insert([
            'mahasiswa_id' => '3',
            'jadwal_id' => '2',
-           'score' => 'B',
+           'assignment' => '20',
+           'UTS' => '80',
+           'UAS' => '80',
+           'total' => 'B-'
            'created_at' => Carbon::now()
         ]);
         DB::table('nilai')->insert([
            'mahasiswa_id' => '4',
            'jadwal_id' => '3',
-           'score' => 'B+',
+           'assignment' => '100',
+           'UTS' => '40',
+           'UAS' => '70',
+           'total' => 'B-',
            'created_at' => Carbon::now()
         ]);
         DB::table('nilai')->insert([
            'mahasiswa_id' => '4',
            'jadwal_id' => '4',
-           'score' => 'A',
+           'assignment' => '60',
+           'UTS' => '80',
+           'UAS' => '70',
            'created_at' => Carbon::now()
         ]);
     }

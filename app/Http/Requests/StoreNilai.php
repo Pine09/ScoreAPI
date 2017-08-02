@@ -26,7 +26,9 @@ class StoreNilai extends FormRequest
         return [
             'mahasiswa_id' => 'required',
             'jadwal_id' => 'required',
-            'score' => 'required',
+            // 'assignment' => 'required',
+            // 'UTS' => 'required',
+            // 'UAS' => 'required',
         ];
     }
 
@@ -35,7 +37,9 @@ class StoreNilai extends FormRequest
       return [
           'mahasiswa_id.required' => 'ID of Mahasiswa is required',
           'jadwal_id.required' => 'ID of Jadwal is required',
-          'score.required' => 'Score must be defined for insertion',
+         //  'assignment.required' => 'Assignment must be defined for insertion. If you do not use this, please insert zero',
+         //  'UTS.required' => 'UTS must be defined for insertion',
+         //  'UAS.required' => 'UAS must be defined for insertion',
       ];
     }
 }

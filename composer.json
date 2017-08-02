@@ -6,9 +6,10 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "darkaonline/l5-swagger": "~5.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-         "tymon/jwt-auth": "0.5.*"
+        "tymon/jwt-auth": "0.5.*"
     },
     "require-dev": {
         "deployer/deployer": "^5.1",

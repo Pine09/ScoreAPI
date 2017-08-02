@@ -5,7 +5,36 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-
+/**
+*      @SWG\Post(
+*         path="/api/v1/login",
+*         summary="Authenticate User.",
+*         produces={"application/json"},
+*         consumes={"application/json"},
+*         tags={"login"},
+*         @SWG\Response(
+*            response=200,
+*            description="User token.",
+*            @SWG\Property(
+*               property="token",
+*               type="string"
+*            )
+*         ),
+*         @SWG\Response(
+*            response=401,
+*            description="Unauthorized action.",
+*         ),
+*         @SWG\Parameter(
+*            name="user credentials",
+*            in="body",
+*            required=true,
+*            type="string",
+*            @SWG\Schema(
+*               type="string"
+*            ),
+*         )
+*      )
+*/
 class AuthController extends Controller
 {
     public function authenticate(Request $request)
