@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class KRS extends Model
 {
     protected $table = "KRS";
+    protected $hidden = ["created_at", "updated_at"];
 
     public function jadwal() {
       return $this->belongsTo(jadwal::class);

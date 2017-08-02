@@ -30,7 +30,8 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 *            required=true,
 *            type="string",
 *            @SWG\Schema(
-*               type="string"
+*               type="array",
+*              @SWG\Items(ref="#/definitions/login")
 *            ),
 *         )
 *      )

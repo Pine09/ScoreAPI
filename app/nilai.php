@@ -7,8 +7,38 @@ use Illuminate\Database\Eloquent\Model;
 class nilai extends Model
 {
     protected $table = "nilai";
-    protected $hidden=["jadwal_id","created_at"];
+    protected $hidden=["created_at","updated_at"];
     // ***
+    /**
+   *      @SWG\Definition(
+   *         definition="nilai",
+   *         @SWG\Property(
+   *            property="mahasiswa_id",
+   *            format="int32",
+   *            type="integer",
+   *         ),
+   *         @SWG\Property(
+   *            property="jadwal_id",
+   *            format="int32",
+   *            type="integer",
+   *         ),
+   *         @SWG\Property(
+   *            property="assignment",
+   *            format="int32",
+   *            type="integer",
+   *         ),
+   *         @SWG\Property(
+   *            property="UTS",
+   *            format="int32",
+   *            type="integer",
+   *         ),
+   *         @SWG\Property(
+   *            property="UAS",
+   *            format="int32",
+   *            type="integer",
+   *         ),
+   *      )
+   */
     public function jadwal() {
       return $this->belongsTo(jadwal::class);
     }

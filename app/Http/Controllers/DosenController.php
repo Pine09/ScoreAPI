@@ -10,19 +10,106 @@ use App\nilai;
 
 class DosenController extends Controller
 {
+   /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    /**
+     *     @SWG\Get(
+     *        path="/api/v1/dosen",
+     *        summary="Menampilkan data diri dosen (you).",
+     *        produces={"application/json"},
+     *        tags={"dosen"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="Data diri dosen (you).",
+     *             @SWG\Schema(
+     *                type="",
+     *                @SWG\Items(ref="#/definitions/dosen")
+     *             )
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       )
+     *   )
+     */
     public function index(){
       $user=Auth::user();
       $user=$user->dosen;
       return response()->json($user->toArray());
     }
-
+    /**
+     *     @SWG\Get(
+     *        path="/api/v1/dosen/jadwal",
+     *        summary="Menampilkan jadwal dosen (yours).",
+     *        produces={"application/json"},
+     *        tags={"dosen"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="Informasi jadwal dosen (you)",
+     *             @SWG\Schema(
+     *                type="array",
+     *                @SWG\Items(ref="#/definitions/jadwal")
+     *             ),
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       )
+     *   )
+     */
     public function jadwal(){
       $user=Auth::user();
       $jadwal=$user->dosen->jadwal->where('status',"On Going");
       $jadwal->load('matkul');
       return response()->json($jadwal->toArray());
     }
-
+    /**
+     *     @SWG\Get(
+     *        path="/api/v1/dosen/nilai/{idjadwal}",
+     *        summary="Menampilkan detail nilai (nilai + matkul + mahasiswa) suatu jadwal.",
+     *        produces={"application/json"},
+     *        tags={"dosen"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="Informasi detail nilai semua mahasiswa suatu jadwal",
+     *             @SWG\Schema(
+     *                type="array",
+     *                @SWG\Items(ref="#/definitions/jadwal")
+     *             )
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="idjadwal",
+     *            in="path",
+     *            required=true,
+     *            type="integer"
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       ),
+     *   )
+     */
     public function detailjadwal($idjadwal){
       $user=Auth::user();
       $user=$user->dosen->id;
@@ -41,6 +128,43 @@ class DosenController extends Controller
 
     }
 
+    /**
+    *      @SWG\Post(
+    *         path="/api/v1/dosen/nilai",
+    *         summary="POST nilai seorang mahasiswa yang ber-relasi dengan jadwal dosen (you).",
+    *         produces={"application/json"},
+    *         consumes={"application/json"},
+    *         tags={"dosen"},
+    *         @SWG\Response(
+    *            response=200,
+    *            description="Data nilai yang berhasil ditambahkan.",
+    *            @SWG\Property(
+    *               property="token",
+    *               type="string"
+    *            )
+    *         ),
+    *         @SWG\Response(
+    *            response=401,
+    *            description="Unauthorized action.",
+    *         ),
+    *       @SWG\Parameter(
+    *            name="Authorization",
+    *            in="header",
+    *            required=true,
+    *            type="string"
+    *       ),
+    *         @SWG\Parameter(
+    *            name="Data Nilai",
+    *            in="body",
+    *            required=true,
+    *            type="integer",
+    *            @SWG\Schema(
+    *               type="array",
+    *              @SWG\Items(ref="#/definitions/nilai")
+    *            ),
+    *         ),
+    *      )
+    */
     public function insertNilai(StoreNilai $request){
       $user = Auth::user();
       $jadwal = $user->dosen->jadwal->where('id', $request->input('jadwal_id'))->first();

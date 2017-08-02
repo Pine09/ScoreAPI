@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class konsentrasi extends Model
 {
     protected $table = "konsentrasi";
+
+    protected $hidden = ["created_at", "updated_at"];
+
     // ***
     public function mahasiswa() {
       return $this->hasMany(mahasiswa::class);

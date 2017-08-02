@@ -9,23 +9,15 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 /**
 *         @SWG\Swagger(
 *            basePath="",
-*            host="scoreapi.app",
+*            host="localhost",
 *            schemes={"http"},
 *            @SWG\Info(
 *               version="1.0",
 *               title="Score API",
 *               @SWG\Contact(
-*                  name="Erik Justian",
-*                  url="https://github.com/erikjustian"
-*               ),
-*               @SWG\Contact(
-*                  name="Ronaldo",
-*                  url="https://github.com/pine09"
-*               ),
-*               @SWG\Contact(
-*                  name="Wilson Nicholas",
-*                  url="https://github.com/wilzznic"
-*               ),
+*                  name="Score API Developer Team",
+*                  url="https://github.com/pine09/ScoreAPI",
+*               )
 *            ),
 *            @SWG\Definition(
 *               definition="Error",

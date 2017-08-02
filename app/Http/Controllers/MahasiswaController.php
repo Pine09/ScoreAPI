@@ -13,7 +13,7 @@ class MahasiswaController extends Controller
 {
 
     public function index(Request $request)
-    {   
+    {
         $user=Auth::user();
         $user=$user->mahasiswa;
         $user->jurusan->jurusan_name;

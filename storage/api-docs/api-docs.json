@@ -1,0 +1,358 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Score API",
+        "contact": {
+            "name": "Score API Developer Team",
+            "url": "https://github.com/pine09/ScoreAPI"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost",
+    "basePath": "",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api/v1/login": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "Authenticate User.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "user credentials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/login"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User token.",
+                        "schema": {
+                            "property": "token",
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/dosen": {
+            "get": {
+                "tags": [
+                    "dosen"
+                ],
+                "summary": "Menampilkan data diri dosen (you).",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data diri dosen (you).",
+                        "schema": {
+                            "type": "",
+                            "items": {
+                                "$ref": "#/definitions/dosen"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/dosen/jadwal": {
+            "get": {
+                "tags": [
+                    "dosen"
+                ],
+                "summary": "Menampilkan jadwal dosen (yours).",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informasi jadwal dosen (you)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/jadwal"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/dosen/nilai/{idjadwal}": {
+            "get": {
+                "tags": [
+                    "dosen"
+                ],
+                "summary": "Menampilkan detail nilai (nilai + matkul + mahasiswa) suatu jadwal.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idjadwal",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informasi detail nilai semua mahasiswa suatu jadwal",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/jadwal"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/dosen/nilai": {
+            "post": {
+                "tags": [
+                    "dosen"
+                ],
+                "summary": "POST nilai seorang mahasiswa yang ber-relasi dengan jadwal dosen (you).",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Data Nilai",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/nilai"
+                            }
+                        },
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data nilai yang berhasil ditambahkan.",
+                        "schema": {
+                            "property": "token",
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        },
+        "/api/v1/mahasiswa": {
+            "get": {
+                "tags": [
+                    "dosen"
+                ],
+                "summary": "Menampilkan data diri mahasiswa (you).",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data diri mahasiswa (you).",
+                        "schema": {
+                            "type": "",
+                            "items": {
+                                "$ref": "#/definitions/mahasiswa"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "login": {
+            "properties": {
+                "NI": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "mahasiswa": {
+            "properties": {
+                "NIM": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nama_depan": {
+                    "type": "string"
+                },
+                "nama_belakang": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "alamat": {
+                    "type": "string"
+                },
+                "jenis_kelamin": {
+                    "type": "string"
+                }
+            }
+        },
+        "dosen": {
+            "properties": {
+                "NID": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nama_depan": {
+                    "type": "string"
+                },
+                "nama_belakang": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "alamat": {
+                    "type": "string"
+                },
+                "jenis_kelamin": {
+                    "type": "string"
+                }
+            }
+        },
+        "jadwal": {
+            "properties": {
+                "dosen_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "matkul_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "day": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "nilai": {
+            "properties": {
+                "mahasiswa_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "jadwal_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "assignment": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "UTS": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "UAS": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        }
+    }
+}
