@@ -3,11 +3,33 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+/**
+*      @SWG\Definition(
+*         definition="jadwal",
+*         @SWG\Property(
+*            property="dosen_id",
+*            format="int32",
+*            type="integer",
+*         ),
+*         @SWG\Property(
+*            property="matkul_id",
+*            format="int32",
+*            type="integer",
+*         ),
+*         @SWG\Property(
+*            property="day",
+*            type="string",
+*         ),
+*         @SWG\Property(
+*            property="status",
+*            type="enum('On Going', 'Ended')",
+*         ),
+*      )
+*/
 class jadwal extends Model
 {
     protected $table = "jadwal";
-    
+
     protected $hidden = ["created_at", "updated_at"];
 
     // protected $hidden=["dosen_id"];

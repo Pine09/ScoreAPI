@@ -18,7 +18,7 @@ class NilaiSeeder extends Seeder
            'assignment' => '80',
            'UTS' => '80',
            'UAS' => '80',
-           'total' => 'A-'
+           'total' => 'A-',
            'created_at' => Carbon::now()
         ]);
         DB::table('nilai')->insert([
@@ -36,7 +36,7 @@ class NilaiSeeder extends Seeder
            'assignment' => '20',
            'UTS' => '80',
            'UAS' => '80',
-           'total' => 'B-'
+           'total' => 'B-',
            'created_at' => Carbon::now()
         ]);
         DB::table('nilai')->insert([
@@ -54,6 +54,7 @@ class NilaiSeeder extends Seeder
            'assignment' => '60',
            'UTS' => '80',
            'UAS' => '70',
+           'total' => 'B+',
            'created_at' => Carbon::now()
         ]);
     }

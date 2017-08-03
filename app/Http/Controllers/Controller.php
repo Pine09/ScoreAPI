@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 /**
 *         @SWG\Swagger(
 *            basePath="",
-*            host="localhost",
+*            host="score.app",
 *            schemes={"http"},
 *            @SWG\Info(
 *               version="1.0",

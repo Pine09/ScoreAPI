@@ -41,6 +41,61 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+    *      @SWG\Definition(
+    *         definition="mahasiswa",
+    *         @SWG\Property(
+    *            property="NIM",
+    *            format="int32",
+    *            type="integer",
+    *         ),
+    *         @SWG\Property(
+    *            property="foto",
+    *            format="int32",
+    *            type="string",
+    *            description="path to image. nullable field"
+    *         ),
+    *         @SWG\Property(
+    *            property="nama_depan",
+    *            type="string",
+    *         ),
+    *         @SWG\Property(
+    *            property="nama_belakang",
+    *            type="string",
+    *         ),
+    *         @SWG\Property(
+    *            property="email",
+    *            type="string",
+    *         ),
+    *         @SWG\Property(
+    *            property="alamat",
+    *            type="text",
+    *         ),
+    *         @SWG\Property(
+    *            property="jenis_kelamin",
+    *            type="enum('Laki-Laki', 'Perempuan')",
+    *         ),
+    *         @SWG\Property(
+    *            property="jurusan_id",
+    *            format = "int32",
+    *            type="integer",
+    *         ),
+    *         @SWG\Property(
+    *            property="konsentrasi_id",
+    *            format = "int32",
+    *            type="integer",
+    *            description="nullable field",
+    *         ),
+    *         @SWG\Property(
+    *            property="angkatan",
+    *            type="string",
+    *         ),
+    *         @SWG\Property(
+    *            property="kelas",
+    *            type="string",
+    *         ),
+    *      )
+    */
     public function mahasiswa() {
       return $this->belongsTo(mahasiswa::class, 'NI', 'NIM');
     }
@@ -49,9 +104,15 @@ class User extends Authenticatable
    *      @SWG\Definition(
    *         definition="dosen",
    *         @SWG\Property(
-   *            property="NID",
+   *            property="NIDN",
    *            format="int32",
    *            type="integer",
+   *         ),
+   *         @SWG\Property(
+   *            property="foto",
+   *            format="int32",
+   *            type="string",
+   *            description="path to image. nullable field"
    *         ),
    *         @SWG\Property(
    *            property="nama_depan",
@@ -67,11 +128,11 @@ class User extends Authenticatable
    *         ),
    *         @SWG\Property(
    *            property="alamat",
-   *            type="string",
+   *            type="text",
    *         ),
    *         @SWG\Property(
    *            property="jenis_kelamin",
-   *            type="string",
+   *            type="enum('Laki-Laki', 'Perempuan')",
    *         )
    *      )
    */

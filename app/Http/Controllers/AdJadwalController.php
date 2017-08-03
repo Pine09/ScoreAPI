@@ -13,6 +13,36 @@ class AdJadwalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Get(
+     *        path="/api/v1/admin/jadwal",
+     *        summary="Mengambil semua data jadwal yang ada.",
+     *        produces={"application/json"},
+     *        tags={"Admin on Jadwal"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data jadwal. (max 5 per page)",
+     *             @SWG\Schema(
+     *                type="array",
+     *                @SWG\Items(ref="#/definitions/jadwal")
+     *             )
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       )
+     *   )
+     */
     public function index()
     {
       $schdl_data = jadwal::paginate(5);
@@ -35,6 +65,43 @@ class AdJadwalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Post(
+     *        path="/api/v1/admin/jadwal",
+     *        summary="Mendaftarkan jadwal baru.",
+     *        produces={"application/json"},
+     *        consumes={"application/json"},
+     *        tags={"Admin on Jadwal"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data jadwal baru.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *         @SWG\Parameter(
+     *            name="Data Jadwal Baru.",
+     *            in="body",
+     *            required=true,
+     *            type="string",
+     *            @SWG\Schema(
+     *               type="array",
+     *              @SWG\Items(ref="#/definitions/jadwal")
+     *            ),
+     *       )
+     *   )
+     */
     public function store(Request $request)
     {
       $new_schdl = new jadwal();
@@ -53,11 +120,48 @@ class AdJadwalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Get(
+     *        path="/api/v1/admin/jadwal/{id}",
+     *        summary="Mengambil data jadwal spesifik",
+     *        produces={"application/json"},
+     *        tags={"Admin on Jadwal"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data jadwal yang dicari",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=404,
+     *          description="Resource not found.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       )
+     *   )
+     */
     public function show($id)
     {
       $spec_schdl = jadwal::find($id);
       if ($spec_schdl == null) {
-        echo "No schedule with the specified description";
+         $a=array("error"=>"Jadwal not found");
+        return response()->json($a,404);
       }
       else {
         return response()->json($spec_schdl->toArray());
@@ -82,6 +186,48 @@ class AdJadwalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Put(
+     *        path="/api/v1/admin/jadwal/{id}",
+     *        summary="Mengedit data jadwal.",
+     *        produces={"application/json"},
+     *        tags={"Admin on Jadwal"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data jadwal edited.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       ),
+     *         @SWG\Parameter(
+     *            name="Data Jadwal (Edit).",
+     *            in="body",
+     *            required=true,
+     *            type="string",
+     *            @SWG\Schema(
+     *               type="array",
+     *              @SWG\Items(ref="#/definitions/jadwal")
+     *            ),
+     *         ),
+     *   )
+     */
     public function update(Request $request, $id)
     {
       $old_schdl = jadwal::find($id);
@@ -100,6 +246,38 @@ class AdJadwalController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+     /**
+     *     @SWG\Delete(
+     *        path="/api/v1/admin/jadwal/{id}",
+     *        summary="Men-delete data jadwal.",
+     *        produces={"application/json"},
+     *        tags={"Admin on Jadwal"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data jadwal deleted.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       ),
+     *   )
      */
     public function destroy($id)
     {

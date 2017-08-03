@@ -14,6 +14,36 @@ class AdKRSController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Get(
+     *        path="/api/v1/admin/KRS",
+     *        summary="Mengambil semua KRS yang ada.",
+     *        produces={"application/json"},
+     *        tags={"Admin on KRS"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data KRS. (max 5 per page)",
+     *             @SWG\Schema(
+     *                type="array",
+     *                @SWG\Items(ref="#/definitions/KRS")
+     *             )
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       )
+     *   )
+     */
     public function index()
     {
       $KRS_data = KRS::paginate(5);
@@ -36,6 +66,49 @@ class AdKRSController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+     /**
+      * Store a newly created resource in storage.
+      *
+      * @param  \Illuminate\Http\Request  $request
+      * @return \Illuminate\Http\Response
+      */
+      /**
+      *     @SWG\Post(
+      *        path="/api/v1/admin/KRS",
+      *        summary="Mendaftarkan KRS baru.",
+      *        produces={"application/json"},
+      *        consumes={"application/json"},
+      *        tags={"Admin on KRS"},
+      *        @SWG\Response(
+      *           response=200,
+      *           description="data KRS baru.",
+      *       ),
+      *       @SWG\Response(
+      *          response=401,
+      *          description="Unauthorized action.",
+      *       ),
+      *       @SWG\Response(
+      *          response=403,
+      *          description="Forbidden action.",
+      *       ),
+      *       @SWG\Parameter(
+      *            name="Authorization",
+      *            in="header",
+      *            required=true,
+      *            type="string",
+      *         ),
+      *         @SWG\Parameter(
+      *            name="Data KRS Baru.",
+      *            in="body",
+      *            required=true,
+      *            type="string",
+      *            @SWG\Schema(
+      *               type="array",
+      *              @SWG\Items(ref="#/definitions/KRS")
+      *            ),
+      *       )
+      *   )
+      */
     public function store(StoreKRS $request)
     {
         if($request->has('kelas')){
@@ -68,6 +141,42 @@ class AdKRSController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Get(
+     *        path="/api/v1/admin/KRS/{id}",
+     *        summary="Mengambil data KRS spesifik",
+     *        produces={"application/json"},
+     *        tags={"Admin on KRS"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data KRS yang dicari",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=404,
+     *          description="Resource not found.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       )
+     *   )
+     */
     public function show($id)
     {
       $spec_KRS = KRS::find($id);
@@ -97,6 +206,48 @@ class AdKRSController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Put(
+     *        path="/api/v1/admin/KRS/{id}",
+     *        summary="Mengedit data KRS.",
+     *        produces={"application/json"},
+     *        tags={"Admin on KRS"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data KRS edited.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       ),
+     *         @SWG\Parameter(
+     *            name="Data KRS (Edit).",
+     *            in="body",
+     *            required=true,
+     *            type="string",
+     *            @SWG\Schema(
+     *               type="array",
+     *              @SWG\Items(ref="#/definitions/KRS")
+     *            ),
+     *         ),
+     *   )
+     */
     public function update(StoreKRS $request, $id)
     {
       $old_KRS = KRS::find($id);
@@ -115,6 +266,38 @@ class AdKRSController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+     /**
+     *     @SWG\Delete(
+     *        path="/api/v1/admin/KRS/{id}",
+     *        summary="Men-delete data KRS.",
+     *        produces={"application/json"},
+     *        tags={"Admin on KRS"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data KRS deleted.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       ),
+     *   )
      */
     public function destroy($id)
     {

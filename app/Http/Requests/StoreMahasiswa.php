@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Http\Request;
 class StoreMahasiswa extends FormRequest
 {
     /**
@@ -21,13 +21,13 @@ class StoreMahasiswa extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
         return [
-            'NIM' => 'required',
+            'NIM' => 'required|unique:mahasiswa,NIM,' .$this->mahasiswa,
             'nama_depan' => 'required',
             'nama_belakang' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:mahasiswa,email,' .$this->mahasiswa,
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
             'jurusan_id' => 'required',
@@ -40,9 +40,11 @@ class StoreMahasiswa extends FormRequest
     {
       return [
           'NIM.required' => 'NIM of Mahasiswa is required',
+          'NIM.unique' => 'NIM already exists!',
           'nama_depan.required' => 'nama_depan of Mahasiswa is required',
           'nama_belakang.required' => 'nama_belakang of Mahasiswa is required',
           'email.required' => 'email of Mahasiswa is required',
+          'email.unique' => 'email already used!',
           'alamat.required' => 'alamat of Mahasiswa is required',
           'jenis_kelamin.required' => 'jenis_kelamin of Mahasiswa is required',
           'jurusan_id.required' => 'jurusan_id of Mahasiswa is required',

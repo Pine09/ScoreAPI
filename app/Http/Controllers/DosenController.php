@@ -33,6 +33,10 @@ class DosenController extends Controller
      *          response=401,
      *          description="Unauthorized action.",
      *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
      *       @SWG\Parameter(
      *            name="Authorization",
      *            in="header",
@@ -64,6 +68,10 @@ class DosenController extends Controller
      *          response=401,
      *          description="Unauthorized action.",
      *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
      *       @SWG\Parameter(
      *            name="Authorization",
      *            in="header",
@@ -86,6 +94,7 @@ class DosenController extends Controller
      *        tags={"dosen"},
      *        @SWG\Response(
      *           response=200,
+     *            examples={"lala":"string"},
      *           description="Informasi detail nilai semua mahasiswa suatu jadwal",
      *             @SWG\Schema(
      *                type="array",
@@ -95,6 +104,10 @@ class DosenController extends Controller
      *       @SWG\Response(
      *          response=401,
      *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
      *       ),
      *       @SWG\Parameter(
      *            name="idjadwal",
@@ -138,15 +151,15 @@ class DosenController extends Controller
     *         @SWG\Response(
     *            response=200,
     *            description="Data nilai yang berhasil ditambahkan.",
-    *            @SWG\Property(
-    *               property="token",
-    *               type="string"
-    *            )
     *         ),
     *         @SWG\Response(
     *            response=401,
     *            description="Unauthorized action.",
     *         ),
+    *       @SWG\Response(
+    *          response=403,
+    *          description="Forbidden action.",
+    *       ),
     *       @SWG\Parameter(
     *            name="Authorization",
     *            in="header",

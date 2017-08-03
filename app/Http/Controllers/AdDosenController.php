@@ -13,6 +13,36 @@ class AdDosenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Get(
+     *        path="/api/v1/admin/dosen",
+     *        summary="Mengambil semua data dosen yang ada.",
+     *        produces={"application/json"},
+     *        tags={"Admin on Dosen"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data dosen. (max 5 per page)",
+     *             @SWG\Schema(
+     *                type="array",
+     *                @SWG\Items(ref="#/definitions/dosen")
+     *             )
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       )
+     *   )
+     */
     public function index()
     {
       $lec_data = dosen::paginate(5);
@@ -35,6 +65,43 @@ class AdDosenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Post(
+     *        path="/api/v1/admin/dosen",
+     *        summary="Mendaftarkan dosen baru.",
+     *        produces={"application/json"},
+     *        consumes={"application/json"},
+     *        tags={"Admin on Dosen"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data dosen baru.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *         @SWG\Parameter(
+     *            name="Data Dosen Baru.",
+     *            in="body",
+     *            required=true,
+     *            type="string",
+     *            @SWG\Schema(
+     *               type="array",
+     *              @SWG\Items(ref="#/definitions/dosen")
+     *            ),
+     *       )
+     *   )
+     */
     public function store(StoreDosen $request)
     {
       $new_lec = new dosen();
@@ -54,6 +121,38 @@ class AdDosenController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+     /**
+     *     @SWG\Get(
+     *        path="/api/v1/admin/dosen/{id}",
+     *        summary="Mengambil data dosen spesifik",
+     *        produces={"application/json"},
+     *        tags={"Admin on Dosen"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data dosen yang dicari",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       )
+     *   )
      */
     public function show($id)
     {
@@ -84,6 +183,48 @@ class AdDosenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Put(
+     *        path="/api/v1/admin/dosen/{id}",
+     *        summary="Mengedit data diri dosen.",
+     *        produces={"application/json"},
+     *        tags={"Admin on Dosen"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data dosen edited.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       ),
+     *         @SWG\Parameter(
+     *            name="Data Dosen (Edit).",
+     *            in="body",
+     *            required=true,
+     *            type="string",
+     *            @SWG\Schema(
+     *               type="array",
+     *              @SWG\Items(ref="#/definitions/dosen")
+     *            ),
+     *         ),
+     *   )
+     */
     public function update(StoreDosen $request, $id)
     {
       $old_lec = dosen::find($id);
@@ -104,6 +245,38 @@ class AdDosenController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+     /**
+     *     @SWG\Delete(
+     *        path="/api/v1/admin/dosen/{id}",
+     *        summary="Men-delete data dosen.",
+     *        produces={"application/json"},
+     *        tags={"Admin on Dosen"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data dosen deleted.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       ),
+     *   )
      */
     public function destroy($id)
     {

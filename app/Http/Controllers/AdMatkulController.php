@@ -13,6 +13,36 @@ class AdMatkulController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Get(
+     *        path="/api/v1/admin/matkul",
+     *        summary="Mengambil semua mata kuliah yang ada.",
+     *        produces={"application/json"},
+     *        tags={"Admin on Mata Kuliah"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data mata kuliah. (max 5 per page)",
+     *             @SWG\Schema(
+     *                type="array",
+     *                @SWG\Items(ref="#/definitions/matkul")
+     *             )
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       )
+     *   )
+     */
     public function index()
     {
       $matkul_data = matkul::paginate(5);
@@ -35,6 +65,43 @@ class AdMatkulController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Post(
+     *        path="/api/v1/admin/matkul",
+     *        summary="Mendaftarkan mata kuliah baru.",
+     *        produces={"application/json"},
+     *        consumes={"application/json"},
+     *        tags={"Admin on Mata Kuliah"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data mata kuliah baru.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *         @SWG\Parameter(
+     *            name="Data Mata Kuliah Baru.",
+     *            in="body",
+     *            required=true,
+     *            type="string",
+     *            @SWG\Schema(
+     *               type="array",
+     *              @SWG\Items(ref="#/definitions/matkul")
+     *            ),
+     *       )
+     *   )
+     */
     public function store(StoreMatkul $request)
     {
       $new_matkul = new matkul();
@@ -51,6 +118,42 @@ class AdMatkulController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+     /**
+     *     @SWG\Get(
+     *        path="/api/v1/admin/matkul/{id}",
+     *        summary="Mengambil data mata kuliah spesifik",
+     *        produces={"application/json"},
+     *        tags={"Admin on Mata Kuliah"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data mata kuliah yang dicari",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=404,
+     *          description="Resource not found.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       )
+     *   )
      */
     public function show($id)
     {
@@ -81,6 +184,48 @@ class AdMatkulController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Put(
+     *        path="/api/v1/admin/matkul/{id}",
+     *        summary="Mengedit data mata kuliah.",
+     *        produces={"application/json"},
+     *        tags={"Admin on Mata Kuliah"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data mata kuliah edited.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       ),
+     *         @SWG\Parameter(
+     *            name="Data Mata Kuliah (Edit).",
+     *            in="body",
+     *            required=true,
+     *            type="string",
+     *            @SWG\Schema(
+     *               type="array",
+     *              @SWG\Items(ref="#/definitions/matkul")
+     *            ),
+     *         ),
+     *   )
+     */
     public function update(StoreMatkul $request, $id)
     {
       $old_matkul = matkul::find($id);
@@ -98,6 +243,38 @@ class AdMatkulController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+     /**
+     *     @SWG\Delete(
+     *        path="/api/v1/admin/matkul/{id}",
+     *        summary="Men-delete data mata kuliah.",
+     *        produces={"application/json"},
+     *        tags={"Admin on Mata Kuliah"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data mata kuliah deleted.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       ),
+     *   )
      */
     public function destroy($id)
     {

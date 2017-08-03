@@ -26,16 +26,24 @@ class nilai extends Model
    *            property="assignment",
    *            format="int32",
    *            type="integer",
+   *            description="nullable field",
    *         ),
    *         @SWG\Property(
    *            property="UTS",
    *            format="int32",
    *            type="integer",
+   *            description="nullable field",
    *         ),
    *         @SWG\Property(
    *            property="UAS",
    *            format="int32",
    *            type="integer",
+   *            description="nullable field",
+   *         ),
+   *         @SWG\Property(
+   *            property="total",
+   *            type="string",
+   *            description="automatically count",
    *         ),
    *      )
    */

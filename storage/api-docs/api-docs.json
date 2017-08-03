@@ -8,12 +8,1002 @@
         },
         "version": "1.0"
     },
-    "host": "localhost",
+    "host": "score.app",
     "basePath": "",
     "schemes": [
         "http"
     ],
     "paths": {
+        "/api/v1/admin/dosen": {
+            "get": {
+                "tags": [
+                    "Admin on Dosen"
+                ],
+                "summary": "Mengambil semua data dosen yang ada.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data dosen. (max 5 per page)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/dosen"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Admin on Dosen"
+                ],
+                "summary": "Mendaftarkan dosen baru.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Data Dosen Baru.",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/dosen"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data dosen baru."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/dosen/{id}": {
+            "get": {
+                "tags": [
+                    "Admin on Dosen"
+                ],
+                "summary": "Mengambil data dosen spesifik",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data dosen yang dicari"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin on Dosen"
+                ],
+                "summary": "Mengedit data diri dosen.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Data Dosen (Edit).",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/dosen"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data dosen edited."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin on Dosen"
+                ],
+                "summary": "Men-delete data dosen.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data dosen deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/jadwal": {
+            "get": {
+                "tags": [
+                    "Admin on Jadwal"
+                ],
+                "summary": "Mengambil semua data jadwal yang ada.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data jadwal. (max 5 per page)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/jadwal"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Admin on Jadwal"
+                ],
+                "summary": "Mendaftarkan jadwal baru.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Data Jadwal Baru.",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/jadwal"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data jadwal baru."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/jadwal/{id}": {
+            "get": {
+                "tags": [
+                    "Admin on Jadwal"
+                ],
+                "summary": "Mengambil data jadwal spesifik",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data jadwal yang dicari"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin on Jadwal"
+                ],
+                "summary": "Mengedit data jadwal.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Data Jadwal (Edit).",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/jadwal"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data jadwal edited."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin on Jadwal"
+                ],
+                "summary": "Men-delete data jadwal.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data jadwal deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/KRS": {
+            "get": {
+                "tags": [
+                    "Admin on KRS"
+                ],
+                "summary": "Mengambil semua KRS yang ada.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data KRS. (max 5 per page)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/KRS"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Admin on KRS"
+                ],
+                "summary": "Mendaftarkan KRS baru.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Data KRS Baru.",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/KRS"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data KRS baru."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/KRS/{id}": {
+            "get": {
+                "tags": [
+                    "Admin on KRS"
+                ],
+                "summary": "Mengambil data KRS spesifik",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data KRS yang dicari"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin on KRS"
+                ],
+                "summary": "Mengedit data KRS.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Data KRS (Edit).",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/KRS"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data KRS edited."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin on KRS"
+                ],
+                "summary": "Men-delete data KRS.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data KRS deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/mahasiswa": {
+            "get": {
+                "tags": [
+                    "Admin on Mahasiswa"
+                ],
+                "summary": "Mengambil semua data mahasiswa yang ada.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data mahasiswa. (max 5 per page)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/mahasiswa"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Admin on Mahasiswa"
+                ],
+                "summary": "Mendaftarkan mahasiswa baru.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Data Mahasiswa Baru.",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/mahasiswa"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data mahasiswa baru."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/mahasiswa/{id}": {
+            "get": {
+                "tags": [
+                    "Admin on Mahasiswa"
+                ],
+                "summary": "Mengambil data mahasiswa spesifik",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data mahasiswa yang dicari"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin on Mahasiswa"
+                ],
+                "summary": "Mengedit data diri mahasiswa.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Data Mahasiswa (Edit).",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/mahasiswa"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data mahasiswa edited."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin on Mahasiswa"
+                ],
+                "summary": "Men-delete data mahasiswa.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data mahasiswa deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/matkul": {
+            "get": {
+                "tags": [
+                    "Admin on Mata Kuliah"
+                ],
+                "summary": "Mengambil semua mata kuliah yang ada.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data mata kuliah. (max 5 per page)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/matkul"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Admin on Mata Kuliah"
+                ],
+                "summary": "Mendaftarkan mata kuliah baru.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Data Mata Kuliah Baru.",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/matkul"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data mata kuliah baru."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/matkul/{id}": {
+            "get": {
+                "tags": [
+                    "Admin on Mata Kuliah"
+                ],
+                "summary": "Mengambil data mata kuliah spesifik",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data mata kuliah yang dicari"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin on Mata Kuliah"
+                ],
+                "summary": "Mengedit data mata kuliah.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Data Mata Kuliah (Edit).",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/matkul"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data mata kuliah edited."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin on Mata Kuliah"
+                ],
+                "summary": "Men-delete data mata kuliah.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data mata kuliah deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            }
+        },
         "/api/v1/login": {
             "post": {
                 "tags": [
@@ -83,6 +1073,9 @@
                     },
                     "401": {
                         "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
                     }
                 }
             }
@@ -116,6 +1109,9 @@
                     },
                     "401": {
                         "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
                     }
                 }
             }
@@ -151,10 +1147,16 @@
                             "items": {
                                 "$ref": "#/definitions/jadwal"
                             }
+                        },
+                        "examples": {
+                            "lala": "string"
                         }
                     },
                     "401": {
                         "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
                     }
                 }
             }
@@ -193,14 +1195,13 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Data nilai yang berhasil ditambahkan.",
-                        "schema": {
-                            "property": "token",
-                            "type": "string"
-                        }
+                        "description": "Data nilai yang berhasil ditambahkan."
                     },
                     "401": {
                         "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
                     }
                 }
             }
@@ -208,7 +1209,7 @@
         "/api/v1/mahasiswa": {
             "get": {
                 "tags": [
-                    "dosen"
+                    "mahasiswa"
                 ],
                 "summary": "Menampilkan data diri mahasiswa (you).",
                 "produces": [
@@ -224,9 +1225,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Data diri mahasiswa (you).",
+                        "description": "Data diri mahasiswa.",
                         "schema": {
-                            "type": "",
+                            "type": "array",
                             "items": {
                                 "$ref": "#/definitions/mahasiswa"
                             }
@@ -234,6 +1235,81 @@
                     },
                     "401": {
                         "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            }
+        },
+        "/api/v1/mahasiswa/jadwal": {
+            "get": {
+                "tags": [
+                    "mahasiswa"
+                ],
+                "summary": "Menampilkan jadwal mahasiswa (you).",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info jadwal mahasiswa.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/jadwal"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            }
+        },
+        "/api/v1/mahasiswa/nilai": {
+            "get": {
+                "tags": [
+                    "mahasiswa"
+                ],
+                "summary": "Menampilkan semua nilai mahasiswa (you).",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Nilai mahasiswa.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/nilai"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
                     }
                 }
             }
@@ -255,6 +1331,18 @@
                 }
             }
         },
+        "KRS": {
+            "properties": {
+                "jadwal_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "mahasiswa_id": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
         "login": {
             "properties": {
                 "NI": {
@@ -272,27 +1360,9 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "nama_depan": {
-                    "type": "string"
-                },
-                "nama_belakang": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "alamat": {
-                    "type": "string"
-                },
-                "jenis_kelamin": {
-                    "type": "string"
-                }
-            }
-        },
-        "dosen": {
-            "properties": {
-                "NID": {
-                    "type": "integer",
+                "foto": {
+                    "description": "path to image. nullable field",
+                    "type": "string",
                     "format": "int32"
                 },
                 "nama_depan": {
@@ -305,10 +1375,53 @@
                     "type": "string"
                 },
                 "alamat": {
-                    "type": "string"
+                    "type": "text"
                 },
                 "jenis_kelamin": {
+                    "type": "enum('Laki-Laki', 'Perempuan')"
+                },
+                "jurusan_id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "konsentrasi_id": {
+                    "description": "nullable field",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "angkatan": {
                     "type": "string"
+                },
+                "kelas": {
+                    "type": "string"
+                }
+            }
+        },
+        "dosen": {
+            "properties": {
+                "NIDN": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "foto": {
+                    "description": "path to image. nullable field",
+                    "type": "string",
+                    "format": "int32"
+                },
+                "nama_depan": {
+                    "type": "string"
+                },
+                "nama_belakang": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "alamat": {
+                    "type": "text"
+                },
+                "jenis_kelamin": {
+                    "type": "enum('Laki-Laki', 'Perempuan')"
                 }
             }
         },
@@ -326,6 +1439,19 @@
                     "type": "string"
                 },
                 "status": {
+                    "type": "enum('On Going', 'Ended')"
+                }
+            }
+        },
+        "matkul": {
+            "properties": {
+                "matkul_code": {
+                    "type": "string"
+                },
+                "matkul_name": {
+                    "type": "string"
+                },
+                "bobot": {
                     "type": "string"
                 }
             }
@@ -341,16 +1467,23 @@
                     "format": "int32"
                 },
                 "assignment": {
+                    "description": "nullable field",
                     "type": "integer",
                     "format": "int32"
                 },
                 "UTS": {
+                    "description": "nullable field",
                     "type": "integer",
                     "format": "int32"
                 },
                 "UAS": {
+                    "description": "nullable field",
                     "type": "integer",
                     "format": "int32"
+                },
+                "total": {
+                    "description": "automatically count",
+                    "type": "string"
                 }
             }
         }

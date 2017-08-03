@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\mahasiswa;
 use App\Http\Requests\StoreMahasiswa;
+use App\Http\Requests\StoreNilai;
 
 class AdMahasiswaController extends Controller
 {
@@ -14,6 +15,36 @@ class AdMahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     /**
+      *     @SWG\Get(
+      *        path="/api/v1/admin/mahasiswa",
+      *        summary="Mengambil semua data mahasiswa yang ada.",
+      *        produces={"application/json"},
+      *        tags={"Admin on Mahasiswa"},
+      *        @SWG\Response(
+      *           response=200,
+      *           description="data mahasiswa. (max 5 per page)",
+      *             @SWG\Schema(
+      *                type="array",
+      *                @SWG\Items(ref="#/definitions/mahasiswa")
+      *             )
+      *       ),
+      *       @SWG\Response(
+      *          response=401,
+      *          description="Unauthorized action.",
+      *       ),
+      *       @SWG\Response(
+      *          response=403,
+      *          description="Forbidden action.",
+      *       ),
+      *       @SWG\Parameter(
+      *            name="Authorization",
+      *            in="header",
+      *            required=true,
+      *            type="string"
+      *       )
+      *   )
+      */
     public function index()
     {
         $stud_data = mahasiswa::paginate(5);
@@ -35,6 +66,43 @@ class AdMahasiswaController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     */
+     /**
+     *     @SWG\Post(
+     *        path="/api/v1/admin/mahasiswa",
+     *        summary="Mendaftarkan mahasiswa baru.",
+     *        produces={"application/json"},
+     *        consumes={"application/json"},
+     *        tags={"Admin on Mahasiswa"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data mahasiswa baru.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *         @SWG\Parameter(
+     *            name="Data Mahasiswa Baru.",
+     *            in="body",
+     *            required=true,
+     *            type="string",
+     *            @SWG\Schema(
+     *               type="array",
+     *              @SWG\Items(ref="#/definitions/mahasiswa")
+     *            ),
+     *       )
+     *   )
      */
     public function store(StoreMahasiswa $request)
     {
@@ -59,6 +127,38 @@ class AdMahasiswaController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+     /**
+     *     @SWG\Get(
+     *        path="/api/v1/admin/mahasiswa/{id}",
+     *        summary="Mengambil data mahasiswa spesifik",
+     *        produces={"application/json"},
+     *        tags={"Admin on Mahasiswa"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data mahasiswa yang dicari",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       )
+     *   )
      */
     public function show($id)
     {
@@ -89,7 +189,53 @@ class AdMahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreNilai $request, $id)
+     /**
+     *     @SWG\Put(
+     *        path="/api/v1/admin/mahasiswa/{id}",
+     *        summary="Mengedit data diri mahasiswa.",
+     *        produces={"application/json"},
+     *        tags={"Admin on Mahasiswa"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data mahasiswa edited.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=404,
+     *          description="Resource not found.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       ),
+     *         @SWG\Parameter(
+     *            name="Data Mahasiswa (Edit).",
+     *            in="body",
+     *            required=true,
+     *            type="string",
+     *            @SWG\Schema(
+     *               type="array",
+     *              @SWG\Items(ref="#/definitions/mahasiswa")
+     *            ),
+     *         ),
+     *   )
+     */
+    public function update(StoreMahasiswa $request, $id)
     {
       $old_stud = mahasiswa::find($id);
 
@@ -112,6 +258,42 @@ class AdMahasiswaController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+     /**
+     *     @SWG\Delete(
+     *        path="/api/v1/admin/mahasiswa/{id}",
+     *        summary="Men-delete data mahasiswa.",
+     *        produces={"application/json"},
+     *        tags={"Admin on Mahasiswa"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data mahasiswa deleted.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=404,
+     *          description="Resource not found.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       ),
+     *   )
      */
     public function destroy($id)
     {
