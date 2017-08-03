@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\KRS;
+use App\nilai;
 use App\Http\Requests\StoreKRS;
 use App\mahasiswa;
 
@@ -46,6 +47,10 @@ class AdKRSController extends Controller
             $krs_mhs->jadwal_id = $request->input('jadwal_id');
             $krs_mhs->mahasiswa_id = $user;
             $krs_mhs->save();
+            $new_grade = new nilai();
+            $new_grade->mahasiswa_id = $user;
+            $new_grade->jadwal_id = $request->input('jadwal_id');
+            $new_grade->save();
             $record[] = $krs_mhs;
           }
           return response()->json($record);
@@ -57,6 +62,10 @@ class AdKRSController extends Controller
           $krs_mhs->jadwal_id = $request->input('jadwal_id');
           $krs_mhs->mahasiswa_id = $user;
           $krs_mhs->save();
+          $new_grade = new nilai();
+          $new_grade->mahasiswa_id = $user;
+          $new_grade->jadwal_id = $request->input('jadwal_id');
+          $new_grade->save();
           $record = $krs_mhs;
           return response()->json($record);
         }
@@ -100,12 +109,15 @@ class AdKRSController extends Controller
     public function update(StoreKRS $request, $id)
     {
       $old_KRS = KRS::find($id);
-
+      $old_score = nilai::find($id);
       $user = mahasiswa::where('id', $request->input('mahasiswa_id'))->first();
       $user = $user->id;
       $old_KRS->jadwal_id = $request->input('jadwal_id');
+      $old_score->jadwal_id = $request->input('jadwal_id');
       $old_KRS->mahasiswa_id = $user;
+      $old_score->mahasiswa_id = $user;
       $old_KRS->save();
+      $old_score->save();
 
       return response()->json($old_KRS);
     }
