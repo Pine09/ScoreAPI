@@ -166,7 +166,7 @@ class AdDosenController extends Controller
       $spec_lec = dosen::find($id);
       if ($spec_lec == null) {
          $a=array("error"=>"Dosen not found");
-        return response()->json($a,404);
+        return response()->json($a,422);
       }
       else {
         return response()->json($spec_lec->toArray());

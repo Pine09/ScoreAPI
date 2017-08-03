@@ -24,7 +24,7 @@ class StoreKonsentrasi extends FormRequest
     public function rules()
     {
        return [
-          'jurusan_id'=>'required',
+          'jurusan_id'=>'required|exists:jurusan,id',
           'konsentrasi_code' => 'required|unique:konsentrasi,konsentrasi_code,'.$this->konsentrasi,
           'konsentrasi_name' => 'required|unique:konsentrasi,konsentrasi_name,'.$this->konsentrasi,
         
@@ -34,6 +34,7 @@ class StoreKonsentrasi extends FormRequest
     public function messages()
     {
       return [
+          'jurusan_id.exists'=>'Jurusan does not exists',
           'jurusan_id.required'=>'jurusan_id of konsentrasi is required',
           'konsentrasi_code.unique'=>'konsentrasi_code already exists!',
           'konsentrasi_name.unique'=>'konsentrasi_name already exists!',
