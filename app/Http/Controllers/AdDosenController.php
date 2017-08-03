@@ -158,7 +158,8 @@ class AdDosenController extends Controller
     {
       $spec_lec = dosen::find($id);
       if ($spec_lec == null) {
-        echo "No lecturer with the specified description";
+         $a=array("error"=>"Dosen not found");
+        return response()->json($a,404);
       }
       else {
         return response()->json($spec_lec->toArray());

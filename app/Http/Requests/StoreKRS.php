@@ -25,6 +25,7 @@ class StoreKRS extends FormRequest
     {
         return [
           'jadwal_id' => 'required',
+          'mahasiswa_id' => 'required'
         ];
     }
 
@@ -32,6 +33,7 @@ class StoreKRS extends FormRequest
     {
       return [
           'jadwal_id.required' => 'jadwal_id of KRS is required',
+          'mahasiswa_id.required' => 'mahasiswa_id of KRS is required',
       ];
     }
 }

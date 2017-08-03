@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\nilai;
+use App\User;
 use App\mahasiswa;
 use App\Http\Requests\StoreMahasiswa;
 use App\Http\Requests\StoreNilai;
@@ -119,6 +121,12 @@ class AdMahasiswaController extends Controller
         $new_stud->kelas = $request->input('kelas');
         $new_stud->save();
 
+        $new_user = new User();
+        $new_user->NI = $request->input('NIM');
+        $new_user->password = bcrypt($request->input('nama_depan'));
+        $new_user->role = "Student";
+        $new_user->save();
+
         return response()->json($new_stud);
     }
 
@@ -164,7 +172,8 @@ class AdMahasiswaController extends Controller
     {
         $spec_stud = mahasiswa::find($id);
         if ($spec_stud == null) {
-          echo "No student with the specified description";
+           $a=array("error"=>"Mahasiswa not found");
+         return response()->json($a,404);
         }
         else {
           return response()->json($spec_stud->toArray());
@@ -238,9 +247,12 @@ class AdMahasiswaController extends Controller
     public function update(StoreMahasiswa $request, $id)
     {
       $old_stud = mahasiswa::find($id);
+      $old_user = $old_stud->credential;
 
       $old_stud->NIM = $request->input('NIM');
+      $old_user->NI = $request->input('NIM');
       $old_stud->nama_depan = $request->input('nama_depan');
+      $old_user->password = bcrypt($request->input('nama_depan'));
       $old_stud->nama_belakang = $request->input('nama_belakang');
       $old_stud->email = $request->input('email');
       $old_stud->alamat = $request->input('alamat');
@@ -249,6 +261,7 @@ class AdMahasiswaController extends Controller
       $old_stud->konsentrasi_id = $request->input('konsentrasi_id');
       $old_stud->angkatan = $request->input('angkatan');
       $old_stud->save();
+      $old_user->save();
 
       return response()->json($old_stud);
     }

@@ -159,7 +159,8 @@ class AdMatkulController extends Controller
     {
       $spec_matkul = matkul::find($id);
       if ($spec_matkul == null) {
-        echo "No matkul with the specified description";
+         $a=array("error"=>"Matkul not found");
+        return response()->json($a,404);
       }
       else {
         return response()->json($spec_matkul->toArray());
