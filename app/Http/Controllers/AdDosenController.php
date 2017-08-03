@@ -298,6 +298,8 @@ class AdDosenController extends Controller
       // foreach ($del_jadwals as $del_jadwal) {
       //   $del_jadwal->delete();
       // }
+      $del_user = $del_lec->credential;
+      $del_user->delete();
       $del_lec->delete();
 
       // $gender = $del_lec->jenis_kelamin;
@@ -309,6 +311,6 @@ class AdDosenController extends Controller
       // }
 
 
-      return response()->json("Lecturer Data of ". $del_lec->nama_depan . " " . $del_lec->nama_belakang ." has been deleted");
+      return response()->json("Lecturer Data and User Data of ". $del_lec->nama_depan . " " . $del_lec->nama_belakang ." has been deleted");
     }
 }
