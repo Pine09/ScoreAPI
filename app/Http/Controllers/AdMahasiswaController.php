@@ -311,8 +311,10 @@ class AdMahasiswaController extends Controller
     public function destroy($id)
     {
       $del_stud = mahasiswa::find($id);
+      $del_user = $del_stud->credential;
+      $del_user->delete();
       $del_stud->delete();
 
-      return response()->json("Student Data of ". $del_stud->nama_depan . " " . $del_stud->nama_belakang ." has been deleted");
+      return response()->json("Student Data and User Data of ". $del_stud->nama_depan . " " . $del_stud->nama_belakang ." has been deleted");
     }
 }

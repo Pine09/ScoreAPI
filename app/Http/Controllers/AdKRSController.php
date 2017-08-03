@@ -315,8 +315,10 @@ class AdKRSController extends Controller
     public function destroy($id)
     {
       $del_KRS = KRS::find($id);
+      $del_nilai = nilai::find($id);
+      $del_nilai->delete();
       $del_KRS->delete();
 
-      return response()->json("KRS Data of Student with ID = ". $del_KRS->mahasiswa_id ." has been deleted");
+      return response()->json("KRS Data and Score Record of Student with ID = ". $del_KRS->mahasiswa_id ." has been deleted");
     }
 }
