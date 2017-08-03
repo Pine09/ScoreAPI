@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 
-use Carbon\Carbon;
 class DefaultAdminSeeder extends Seeder
 {
     /**

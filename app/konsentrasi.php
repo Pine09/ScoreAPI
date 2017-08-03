@@ -8,7 +8,7 @@ class konsentrasi extends Model
 {
     protected $table = "konsentrasi";
 
-    protected $hidden = ["created_at", "updated_at"];
+    protected $hidden = ["created_at", "updated_at","jurusan_id"];
 
     // ***
     public function mahasiswa() {
@@ -16,6 +16,6 @@ class konsentrasi extends Model
     }
 
     public function jurusan() {
-      return $this->belongsTo(jurusan::class);
+      return $this->belongsTo(jurusan::class)->select(array('id','jurusan_name'));
    }
 }

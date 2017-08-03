@@ -42,6 +42,8 @@ Route::group(['prefix' => 'v1'], function() {
         Route::resource('/jadwal', 'AdJadwalController', ['except' => ['create', 'edit']]);
         Route::resource('/matkul', 'AdMatkulController', ['except' => ['create', 'edit']]);
         Route::resource('/KRS', 'AdKRSController', ['except' => ['create', 'edit']]);
+        Route::resource('/jurusan', 'AdJurusanController', ['except' => ['create', 'edit']]);
+        Route::resource('/konsentrasi', 'AdKonsentrasiController', ['except' => ['create', 'edit']]);
       });
    });
 });
