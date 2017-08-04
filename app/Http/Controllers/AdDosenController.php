@@ -339,8 +339,8 @@ class AdDosenController extends Controller
       //   $del_jadwal->delete();
       // }
       $del_user = $del_lec->credential;
-      $del_user->delete();
       $del_lec->delete();
+      $del_user->delete();
 
       // $gender = $del_lec->jenis_kelamin;
       // if ($gender = "Laki-Laki") {
