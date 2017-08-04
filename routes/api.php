@@ -31,7 +31,7 @@ Route::group(['prefix' => 'v1'], function() {
         Route::get('/', 'DosenController@index');
         Route::get('/jadwal', 'DosenController@jadwal');//untuk melihat jadwal mengajar dosen
         Route::get('/nilai/{idjadwal}','DosenController@detailjadwal');//untuk melihat daftar mahasiswa di jadwal tersebut dan nilainya
-        Route::post('/nilai', 'DosenController@insertNilai');//untuk memasukkan nilai kedalam database
+        Route::put('/nilai/{id}', 'DosenController@insertNilai');//untuk memasukkan nilai kedalam database
       });
 
       Route::group(['prefix'=> '/admin','middleware'=>'admin.auth'], function(){

@@ -180,7 +180,7 @@ class DosenController extends Controller
       } else {
         $jdn = $jadwal_detail->load('matkul');
         $jdn->nilai->load('mahasiswa');
-        return $jdn;
+        return response()->json($jdn);
       }
         // $nilai = $jadwal_detail->nilai
 
@@ -199,16 +199,15 @@ class DosenController extends Controller
     }
 
     /**
-    *      @SWG\Post(
-    *         path="/api/v1/dosen/nilai",
-    *         summary="POST nilai seorang mahasiswa yang ber-relasi dengan jadwal dosen (you).",
-    *         produces={"application/json"},
-    *         consumes={"application/json"},
-    *         tags={"dosen"},
-    *         @SWG\Response(
-    *            response=200,
-    *            description="Data nilai yang berhasil ditambahkan.",
-    *         ),
+    *     @SWG\Put(
+    *        path="/api/v1/dosen/nilai/{idmahasiswa}",
+    *        summary="Menambah nilai.",
+    *        produces={"application/json"},
+    *        tags={"dosen"},
+    *        @SWG\Response(
+    *           response=200,
+    *           description="data nilai.",
+    *       ),
     *       @SWG\Response(
     *          response=401,
     *          description="Unauthorized action.",
@@ -222,12 +221,22 @@ class DosenController extends Controller
     *          description="Resource not found.",
     *       ),
     *       @SWG\Response(
+    *          response=409,
+    *          description="Conflict.",
+    *       ),
+    *       @SWG\Response(
     *          response=422,
-    *          description="Unprocessable Entity",
+    *          description="Unprocessable Entity.",
     *       ),
     *       @SWG\Response(
     *          response=500,
     *          description="Internal Server Error.",
+    *       ),
+    *       @SWG\Parameter(
+    *            name="idmahasiswa",
+    *            in="path",
+    *            required=true,
+    *            type="integer",
     *       ),
     *       @SWG\Parameter(
     *            name="Authorization",
@@ -236,21 +245,21 @@ class DosenController extends Controller
     *            type="string"
     *       ),
     *         @SWG\Parameter(
-    *            name="Data Nilai",
+    *            name="Data Nilai.",
     *            in="body",
     *            required=true,
-    *            type="integer",
+    *            type="string",
     *            @SWG\Schema(
     *               type="array",
     *              @SWG\Items(ref="#/definitions/nilai")
     *            ),
     *         ),
-    *      )
+    *   )
     */
-    public function insertNilai(StoreNilai $request){
+    public function insertNilai(StoreNilai $request, $id){
       $user = Auth::user();
       $jadwal = $user->dosen->jadwal->where('id', $request->input('jadwal_id'))->first();
-      $nilai = $jadwal->nilai->where('mahasiswa_id', $request->input('mahasiswa_id'))->first();
+      $nilai = $jadwal->nilai->where('mahasiswa_id', $id)->first();
 
       // $nilai = $user->dosen->jadwal->load(['nilai' => function($query) use ($request){
       //   $query->where('mahasiswa_id', $request->input('mahasiswa_id'));
@@ -266,21 +275,21 @@ class DosenController extends Controller
       $UTS = $nilai->UTS;
       $UAS = $nilai->UAS;
 
-      if ($assignment == null) {
+      if ($assignment != null) {
          $assignment = $request->input('assignment');
          $nilai->assignment = $assignment;
       } else {
          $nilai->assignment = $assignment;
       }
 
-      if ($UTS == null) {
+      if ($UTS != null) {
          $UTS = $request->input('UTS');
          $nilai->UTS = $UTS;
       } else {
          $nilai->UTS = $UTS;
       }
 
-      if ($UAS == null) {
+      if ($UAS != null) {
          $UAS = $request->input('UAS');
          $nilai->UAS = $UAS;
       } else {

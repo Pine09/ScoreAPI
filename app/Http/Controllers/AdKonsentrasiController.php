@@ -120,7 +120,7 @@ class AdKonsentrasiController extends Controller
             $konsentrasi->konsentrasi_name=$request->input('konsentrasi_name');
             $konsentrasi->jurusan_id=$request->input('jurusan_id');
             $konsentrasi->save();
-            return response()->json($konsetrasi);
+            return response()->json($konsentrasi);
 
     }
 
@@ -257,11 +257,11 @@ class AdKonsentrasiController extends Controller
     public function update(StoreKonsentrasi $request, $id)
     {
         $konsentrasi=konsentrasi::find($id);
-        $konsentrasi->konsentrasi_name=$request->input("jurusan_name");
-        $konsentrasi->konsentrasi_code=$request->input("jurusan_code");
+        $konsentrasi->konsentrasi_name=$request->input("konsentrasi_name");
+        $konsentrasi->konsentrasi_code=$request->input("konsentrasi_code");
         $konsentrasi->jurusan_id=$request->input("jurusan_id");
         $konsentrasi->save();
-        return response()->json($jurusan->toArray());
+        return response()->json($konsentrasi->toArray());
     }
 
     /**
@@ -316,9 +316,9 @@ class AdKonsentrasiController extends Controller
      */
     public function destroy($id)
     {
-        $konsentrasi = jurusan::find($id);
+        $konsentrasi = konsentrasi::find($id);
         $konsentrasi->delete();
 
-        return response()->json("Jurusan Data of ". $jurusan->jurusan_name." has been deleted");
+        return response()->json("Konsentrasi Data of ". $konsentrasi->konsentrasi_name." has been deleted");
     }
 }

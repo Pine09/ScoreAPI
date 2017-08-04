@@ -1881,19 +1881,22 @@
                 }
             }
         },
-        "/api/v1/dosen/nilai": {
-            "post": {
+        "/api/v1/dosen/nilai/{idmahasiswa}": {
+            "put": {
                 "tags": [
                     "dosen"
                 ],
-                "summary": "POST nilai seorang mahasiswa yang ber-relasi dengan jadwal dosen (you).",
-                "consumes": [
-                    "application/json"
-                ],
+                "summary": "Menambah nilai.",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
+                    {
+                        "name": "idmahasiswa",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
                     {
                         "name": "Authorization",
                         "in": "header",
@@ -1901,7 +1904,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "Data Nilai",
+                        "name": "Data Nilai.",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -1910,12 +1913,12 @@
                                 "$ref": "#/definitions/nilai"
                             }
                         },
-                        "type": "integer"
+                        "type": "string"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Data nilai yang berhasil ditambahkan."
+                        "description": "data nilai."
                     },
                     "401": {
                         "description": "Unauthorized action."
@@ -1926,8 +1929,11 @@
                     "404": {
                         "description": "Resource not found."
                     },
+                    "409": {
+                        "description": "Conflict."
+                    },
                     "422": {
-                        "description": "Unprocessable Entity"
+                        "description": "Unprocessable Entity."
                     },
                     "500": {
                         "description": "Internal Server Error."

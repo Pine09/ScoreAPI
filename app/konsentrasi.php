@@ -26,7 +26,7 @@ class konsentrasi extends Model
 {
     protected $table = "konsentrasi";
 
-    protected $hidden = ["created_at", "updated_at","jurusan_id"];
+    protected $hidden = ["created_at", "updated_at"];
 
     // ***
     public function mahasiswa() {
