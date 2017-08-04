@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreDosen;
 use App\dosen;
+use App\User;
 
 class AdDosenController extends Controller
 {
@@ -121,6 +122,12 @@ class AdDosenController extends Controller
       $new_lec->jenis_kelamin = $request->input('jenis_kelamin');
       $new_lec->save();
 
+      $new_user = new User();
+      $new_user->NI = $request->input('NIDN');
+      $new_user->password = bcrypt($request->input('nama_depan'));
+      $new_user->role = "Lecturer";
+      $new_user->save();
+
       return response()->json($new_lec);
     }
 
@@ -171,7 +178,7 @@ class AdDosenController extends Controller
       $spec_lec = dosen::find($id);
       if ($spec_lec == null) {
          $a=array("error"=>"Dosen not found");
-        return response()->json($a,404);
+        return response()->json($a,422);
       }
       else {
         return response()->json($spec_lec->toArray());
@@ -257,14 +264,19 @@ class AdDosenController extends Controller
     public function update(StoreDosen $request, $id)
     {
       $old_lec = dosen::find($id);
+      $old_user = $old_lec->credential;
 
       $old_lec->NIDN = $request->input('NIDN');
+      $old_user->NI = $request->input('NIDN');
       $old_lec->nama_depan = $request->input('nama_depan');
+      $old_user->password = bcrypt($request->input('nama_depan'));
       $old_lec->nama_belakang = $request->input('nama_belakang');
       $old_lec->email = $request->input('email');
       $old_lec->alamat = $request->input('alamat');
       $old_lec->jenis_kelamin = $request->input('jenis_kelamin');
       $old_lec->save();
+      $old_user->save();
+
 
       return response()->json($old_lec);
     }
@@ -322,8 +334,23 @@ class AdDosenController extends Controller
     public function destroy($id)
     {
       $del_lec = dosen::find($id);
+      // $del_jadwals = $del_lec->jadwal;
+      // foreach ($del_jadwals as $del_jadwal) {
+      //   $del_jadwal->delete();
+      // }
+      $del_user = $del_lec->credential;
+      $del_user->delete();
       $del_lec->delete();
 
-      return response()->json("Lecturer Data of ". $del_lec->nama_depan . " " . $del_lec->nama_belakang ." has been deleted");
+      // $gender = $del_lec->jenis_kelamin;
+      // if ($gender = "Laki-Laki") {
+      //   $gen = "his";
+      // }
+      // elseif ($gender = "Wanita") {
+      //   $gen = "her";
+      // }
+
+
+      return response()->json("Lecturer Data and User Data of ". $del_lec->nama_depan . " " . $del_lec->nama_belakang ." has been deleted");
     }
 }

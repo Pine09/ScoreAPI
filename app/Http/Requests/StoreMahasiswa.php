@@ -30,7 +30,8 @@ class StoreMahasiswa extends FormRequest
             'email' => 'required|unique:mahasiswa,email,' .$this->mahasiswa,
             'alamat' => 'required',
             'jenis_kelamin' => 'required',
-            'jurusan_id' => 'required',
+            'jurusan_id' => 'required|exists:jurusan,id',
+            'konsentrasi_id' => 'exists:konsentrasi,id',
             'angkatan' => 'required',
             'kelas' => 'required',
         ];
@@ -41,6 +42,8 @@ class StoreMahasiswa extends FormRequest
       return [
           'NIM.required' => 'NIM of Mahasiswa is required',
           'NIM.unique' => 'NIM already exists!',
+          'jurusan_id.exists'=>'Jurusan does not exists',
+          'konsentrasi_id.exists'=>'Konsentrasi does not exists',
           'nama_depan.required' => 'nama_depan of Mahasiswa is required',
           'nama_belakang.required' => 'nama_belakang of Mahasiswa is required',
           'email.required' => 'email of Mahasiswa is required',

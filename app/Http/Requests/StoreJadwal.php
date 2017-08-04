@@ -24,8 +24,8 @@ class StoreJadwal extends FormRequest
     public function rules()
     {
         return [
-          'dosen_id' => 'required',
-          'matkul_id' => 'required',
+          'dosen_id' => 'required|exists:dosen,id',
+          'matkul_id' => 'required|exists:matkul,id',
           'day' => 'required',
           'status' => 'required',
         ];
@@ -34,6 +34,8 @@ class StoreJadwal extends FormRequest
     public function messages()
     {
       return [
+          'dosen_id.exists'=>'Dosen does not exists',
+          'matkul_id.exists'=>'Matkul does not exists',
           'dosen_id.required' => 'ID of Dosen is required',
           'matkul_id.required' => 'ID of Mata Kuliah (Matkul) is required',
           'day' => 'Day of the class is required',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\konsentrasi;
+use App\jurusan;
 use App\Http\Requests\StoreKonsentrasi;
 
 class AdKonsentrasiController extends Controller
@@ -111,22 +112,16 @@ class AdKonsentrasiController extends Controller
      *       )
      *   )
      */
-    public function store(Request $request)
+    public function store(StoreKonsentrasi $request)
     {
-        $idjur=$request->input('jurusan_id');
-        $jurusan=jurusan::find($idjur);// untuk cek jurusan ada atau tidak
-        if (isset($jurusan)) {
-            $konsentrasi=new konsentrasi();
-            $konsentrasi->konsetrasi_code=$request->input('konsentrasi_code');
-            $konsentrasi->konsetrasi_name=$request->input('konsentrasi_name');
+
+            $konsentrasi = new konsentrasi();
+            $konsentrasi->konsentrasi_code=$request->input('konsentrasi_code');
+            $konsentrasi->konsentrasi_name=$request->input('konsentrasi_name');
             $konsentrasi->jurusan_id=$request->input('jurusan_id');
-            $konsetrasi->save();
+            $konsentrasi->save();
             return response()->json($konsetrasi);
-        }
-        else{
-            $msg=array('error'=>'Jurusan does not exists');
-            return response()->json($msg,404);
-        }
+
     }
 
     /**
@@ -259,13 +254,8 @@ class AdKonsentrasiController extends Controller
      *         ),
      *   )
      */
-    public function update(Request $request, $id)
-    {   $idjur=$request->input('jurusan_id');
-        $jurusan=jurusan::find($idjur);
-        if (!isset($jurusan)) {
-            $msg=array('error'=>'Jurusan does not exists!');
-            return response()->json($msg);
-        }
+    public function update(StoreKonsentrasi $request, $id)
+    {
         $konsentrasi=konsentrasi::find($id);
         $konsentrasi->konsentrasi_name=$request->input("jurusan_name");
         $konsentrasi->konsentrasi_code=$request->input("jurusan_code");

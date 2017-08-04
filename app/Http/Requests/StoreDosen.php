@@ -24,10 +24,10 @@ class StoreDosen extends FormRequest
     public function rules()
     {
         return [
-          'NIDN' => 'required|unique:dosen,NIDN' .$this->dosen,
+          'NIDN' => 'required|unique:dosen,NIDN,' .$this->dosen,
           'nama_depan' => 'required',
           'nama_belakang' => 'required',
-          'email' => 'required|unique:dosen,email' .$this->dosen,
+          'email' => 'required|unique:dosen,email,' .$this->dosen,
           'alamat' => 'required',
           'jenis_kelamin' => 'required',
         ];
