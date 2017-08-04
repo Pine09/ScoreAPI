@@ -17,7 +17,6 @@ Web Service For Academic
   - `Mahasiswa`
   - `Jurusan`
   - `Konsentrasi`
-  - `Semester (pending)`
   - `Matakuliah`
   - `KRS`
   - `Jadwal`
