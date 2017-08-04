@@ -9,8 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 *         definition="login",
 *         @SWG\Property(
 *            property="NI",
-*            format="int32",
-*            type="integer",
+*            type="string",
 *         ),
 *         @SWG\Property(
 *            property="password",
@@ -46,12 +45,10 @@ class User extends Authenticatable
     *         definition="mahasiswa",
     *         @SWG\Property(
     *            property="NIM",
-    *            format="int32",
-    *            type="integer",
+    *            type="string",
     *         ),
     *         @SWG\Property(
     *            property="foto",
-    *            format="int32",
     *            type="string",
     *            description="path to image. nullable field"
     *         ),
@@ -105,12 +102,10 @@ class User extends Authenticatable
    *         definition="dosen",
    *         @SWG\Property(
    *            property="NIDN",
-   *            format="int32",
-   *            type="integer",
+   *            type="string",
    *         ),
    *         @SWG\Property(
    *            property="foto",
-   *            format="int32",
    *            type="string",
    *            description="path to image. nullable field"
    *         ),

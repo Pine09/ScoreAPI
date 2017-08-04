@@ -124,12 +124,33 @@ class DosenController extends Controller
      *   )
      */
     public function detailjadwal($idjadwal){
-      $user=Auth::user();
-      $user=$user->dosen->id;
-      $jadwal=jadwal::find($idjadwal);
-      $jadwal->load('matkul');
-      $nilai=$jadwal->nilai->load("mahasiswa");
-      return response()->json($jadwal);
+      // $user=Auth::user();
+      // $user=$user->dosen->id;
+      // $jadwal=jadwal::find($idjadwal);
+      // $jadwal->load('matkul');
+      // $nilai=$jadwal->nilai->load("mahasiswa");
+      // return response()->json($jadwal);
+
+      $dosen = Auth::user()->dosen;
+      $user_id = $dosen->id;
+      $jadwal = $dosen->jadwal;
+
+      $id = $idjadwal;
+      $jadwal_detail = $jadwal->find($id);
+
+      if ($jadwal_detail == null) {
+        $a = array("error"=>"Resource not found");
+        return response()->json($a, 404);
+      } else {
+        $jdn = $jadwal_detail->load('matkul');
+        $jdn->nilai->load('mahasiswa');
+        return $jdn;
+      }
+        // $nilai = $jadwal_detail->nilai
+
+      // $id = $idjadwal;
+      // return $jadwal->find($id);
+
       // $jadwal->load('matkul')->matkul_name;
       // $namamatkul=$jadwal;
       // $nilai->load('mahasiswa');

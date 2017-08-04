@@ -1346,8 +1346,7 @@
         "login": {
             "properties": {
                 "NI": {
-                    "type": "integer",
-                    "format": "int32"
+                    "type": "string"
                 },
                 "password": {
                     "type": "string"
@@ -1357,13 +1356,11 @@
         "mahasiswa": {
             "properties": {
                 "NIM": {
-                    "type": "integer",
-                    "format": "int32"
+                    "type": "string"
                 },
                 "foto": {
                     "description": "path to image. nullable field",
-                    "type": "string",
-                    "format": "int32"
+                    "type": "string"
                 },
                 "nama_depan": {
                     "type": "string"
@@ -1400,13 +1397,11 @@
         "dosen": {
             "properties": {
                 "NIDN": {
-                    "type": "integer",
-                    "format": "int32"
+                    "type": "string"
                 },
                 "foto": {
                     "description": "path to image. nullable field",
-                    "type": "string",
-                    "format": "int32"
+                    "type": "string"
                 },
                 "nama_depan": {
                     "type": "string"
