@@ -37,6 +37,18 @@ class DosenController extends Controller
      *          response=403,
      *          description="Forbidden action.",
      *       ),
+     *       @SWG\Response(
+     *          response=404,
+     *          description="Resource not found.",
+     *       ),
+     *       @SWG\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *       ),
+     *       @SWG\Response(
+     *          response=500,
+     *          description="Internal Server Error.",
+     *       ),
      *       @SWG\Parameter(
      *            name="Authorization",
      *            in="header",
@@ -71,6 +83,18 @@ class DosenController extends Controller
      *       @SWG\Response(
      *          response=403,
      *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=404,
+     *          description="Resource not found.",
+     *       ),
+     *       @SWG\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *       ),
+     *       @SWG\Response(
+     *          response=500,
+     *          description="Internal Server Error.",
      *       ),
      *       @SWG\Parameter(
      *            name="Authorization",
@@ -108,6 +132,18 @@ class DosenController extends Controller
      *       @SWG\Response(
      *          response=403,
      *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=404,
+     *          description="Resource not found.",
+     *       ),
+     *       @SWG\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *       ),
+     *       @SWG\Response(
+     *          response=500,
+     *          description="Internal Server Error.",
      *       ),
      *       @SWG\Parameter(
      *            name="idjadwal",
@@ -173,13 +209,25 @@ class DosenController extends Controller
     *            response=200,
     *            description="Data nilai yang berhasil ditambahkan.",
     *         ),
-    *         @SWG\Response(
-    *            response=401,
-    *            description="Unauthorized action.",
-    *         ),
+    *       @SWG\Response(
+    *          response=401,
+    *          description="Unauthorized action.",
+    *       ),
     *       @SWG\Response(
     *          response=403,
     *          description="Forbidden action.",
+    *       ),
+    *       @SWG\Response(
+    *          response=404,
+    *          description="Resource not found.",
+    *       ),
+    *       @SWG\Response(
+    *          response=422,
+    *          description="Unprocessable Entity",
+    *       ),
+    *       @SWG\Response(
+    *          response=500,
+    *          description="Internal Server Error.",
     *       ),
     *       @SWG\Parameter(
     *            name="Authorization",

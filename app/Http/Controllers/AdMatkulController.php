@@ -84,6 +84,14 @@ class AdMatkulController extends Controller
      *          response=403,
      *          description="Forbidden action.",
      *       ),
+     *       @SWG\Response(
+     *          response=409,
+     *          description="Conflict.",
+     *       ),
+     *       @SWG\Response(
+     *          response=422,
+     *          description="Unprocessable Entity.",
+     *       ),
      *       @SWG\Parameter(
      *            name="Authorization",
      *            in="header",
@@ -142,17 +150,17 @@ class AdMatkulController extends Controller
      *          description="Resource not found.",
      *       ),
      *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       ),
+     *       @SWG\Parameter(
      *            name="Authorization",
      *            in="header",
      *            required=true,
      *            type="string"
      *       ),
-     *       @SWG\Parameter(
-     *            name="id",
-     *            in="path",
-     *            required=true,
-     *            type="integer",
-     *       )
      *   )
      */
     public function show($id)
@@ -203,17 +211,33 @@ class AdMatkulController extends Controller
      *          response=403,
      *          description="Forbidden action.",
      *       ),
-     *       @SWG\Parameter(
-     *            name="Authorization",
-     *            in="header",
-     *            required=true,
-     *            type="string",
-     *         ),
+     *       @SWG\Response(
+     *          response=404,
+     *          description="Resource not found.",
+     *       ),
+     *       @SWG\Response(
+     *          response=409,
+     *          description="Conflict.",
+     *       ),
+     *       @SWG\Response(
+     *          response=422,
+     *          description="Unprocessable Entity.",
+     *       ),
+     *       @SWG\Response(
+     *          response=500,
+     *          description="Internal Server Error.",
+     *       ),
      *       @SWG\Parameter(
      *            name="id",
      *            in="path",
      *            required=true,
      *            type="integer",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
      *       ),
      *         @SWG\Parameter(
      *            name="Data Mata Kuliah (Edit).",
@@ -263,17 +287,29 @@ class AdMatkulController extends Controller
      *          response=403,
      *          description="Forbidden action.",
      *       ),
-     *       @SWG\Parameter(
-     *            name="Authorization",
-     *            in="header",
-     *            required=true,
-     *            type="string",
-     *         ),
+     *       @SWG\Response(
+     *          response=404,
+     *          description="Resource not found.",
+     *       ),
+     *       @SWG\Response(
+     *          response=422,
+     *          description="Unprocessable Entity.",
+     *       ),
+     *       @SWG\Response(
+     *          response=500,
+     *          description="Internal Server Error.",
+     *       ),
      *       @SWG\Parameter(
      *            name="id",
      *            in="path",
      *            required=true,
      *            type="integer",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
      *       ),
      *   )
      */

@@ -13,6 +13,36 @@ class AdKonsentrasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Get(
+     *        path="/api/v1/admin/konsentrasi",
+     *        summary="Mengambil semua Konsentrasi yang ada.",
+     *        produces={"application/json"},
+     *        tags={"Admin on Konsentrasi"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data Konsentrasi. (max 5 per page)",
+     *             @SWG\Schema(
+     *                type="array",
+     *                @SWG\Items(ref="#/definitions/konsentrasi")
+     *             )
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       )
+     *   )
+     */
     public function index()
     {
         $konsentrasi = konsentrasi::paginate(5);
@@ -35,6 +65,51 @@ class AdKonsentrasiController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     */
+     /**
+     *     @SWG\Post(
+     *        path="/api/v1/admin/konsentrasi",
+     *        summary="Mendaftarkan Konsentrasi baru.",
+     *        produces={"application/json"},
+     *        consumes={"application/json"},
+     *        tags={"Admin on Konsentrasi"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data Konsentrasi baru.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=409,
+     *          description="Conflict.",
+     *       ),
+     *       @SWG\Response(
+     *          response=422,
+     *          description="Unprocessable Entity.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string",
+     *         ),
+     *         @SWG\Parameter(
+     *            name="Data Konsentrasi Baru.",
+     *            in="body",
+     *            required=true,
+     *            type="string",
+     *            @SWG\Schema(
+     *               type="array",
+     *              @SWG\Items(ref="#/definitions/konsentrasi")
+     *            ),
+     *       )
+     *   )
      */
     public function store(Request $request)
     {
@@ -59,6 +134,42 @@ class AdKonsentrasiController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+     /**
+     *     @SWG\Get(
+     *        path="/api/v1/admin/konsentrasi/{id}",
+     *        summary="Mengambil data Konsentrasi spesifik",
+     *        produces={"application/json"},
+     *        tags={"Admin on Konsentrasi"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data Konsentrasi yang dicari",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=404,
+     *          description="Resource not found.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       ),
+     *   )
      */
     public function show($id)
     {
@@ -90,6 +201,64 @@ class AdKonsentrasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     /**
+     *     @SWG\Put(
+     *        path="/api/v1/admin/konsentrasi/{id}",
+     *        summary="Mengedit data Konsentrasi.",
+     *        produces={"application/json"},
+     *        tags={"Admin on Konsentrasi"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data Konsentrasi edited.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=404,
+     *          description="Resource not found.",
+     *       ),
+     *       @SWG\Response(
+     *          response=409,
+     *          description="Conflict.",
+     *       ),
+     *       @SWG\Response(
+     *          response=422,
+     *          description="Unprocessable Entity.",
+     *       ),
+     *       @SWG\Response(
+     *          response=500,
+     *          description="Internal Server Error.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       ),
+     *         @SWG\Parameter(
+     *            name="Data Konsentrasi (Edit).",
+     *            in="body",
+     *            required=true,
+     *            type="string",
+     *            @SWG\Schema(
+     *               type="array",
+     *              @SWG\Items(ref="#/definitions/konsentrasi")
+     *            ),
+     *         ),
+     *   )
+     */
     public function update(Request $request, $id)
     {   $idjur=$request->input('jurusan_id');
         $jurusan=jurusan::find($idjur);
@@ -110,6 +279,50 @@ class AdKonsentrasiController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+     /**
+     *     @SWG\Delete(
+     *        path="/api/v1/admin/konsentrasi/{id}",
+     *        summary="Men-delete data Konsentrasi.",
+     *        produces={"application/json"},
+     *        tags={"Admin on Konsentrasi"},
+     *        @SWG\Response(
+     *           response=200,
+     *           description="data Konsentrasi deleted.",
+     *       ),
+     *       @SWG\Response(
+     *          response=401,
+     *          description="Unauthorized action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=403,
+     *          description="Forbidden action.",
+     *       ),
+     *       @SWG\Response(
+     *          response=404,
+     *          description="Resource not found.",
+     *       ),
+     *       @SWG\Response(
+     *          response=422,
+     *          description="Unprocessable Entity.",
+     *       ),
+     *       @SWG\Response(
+     *          response=500,
+     *          description="Internal Server Error.",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="id",
+     *            in="path",
+     *            required=true,
+     *            type="integer",
+     *       ),
+     *       @SWG\Parameter(
+     *            name="Authorization",
+     *            in="header",
+     *            required=true,
+     *            type="string"
+     *       ),
+     *   )
      */
     public function destroy($id)
     {

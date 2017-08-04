@@ -89,6 +89,12 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
                     }
                 }
             }
@@ -104,16 +110,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -125,6 +131,9 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
                     }
                 }
             },
@@ -138,16 +147,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     },
                     {
                         "name": "Data Dosen (Edit).",
@@ -171,6 +180,18 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
                     }
                 }
             },
@@ -184,16 +205,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -205,6 +226,123 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/foto/mahasiswa/{id}": {
+            "post": {
+                "tags": [
+                    "Admin on MediaFile"
+                ],
+                "summary": "Menambahkan foto ke data mahasiswa.",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "foto",
+                        "in": "formData",
+                        "required": true,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data mahasiswa."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/foto/dosen/{id}": {
+            "post": {
+                "tags": [
+                    "Admin on MediaFile"
+                ],
+                "summary": "Menambahkan foto ke data dosen.",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "foto",
+                        "in": "formData",
+                        "required": true,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data mahasiswa."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
                     }
                 }
             }
@@ -284,6 +422,12 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
                     }
                 }
             }
@@ -299,16 +443,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -336,16 +480,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     },
                     {
                         "name": "Data Jadwal (Edit).",
@@ -369,6 +513,18 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
                     }
                 }
             },
@@ -382,16 +538,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -403,6 +559,240 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/jurusan": {
+            "get": {
+                "tags": [
+                    "Admin on Jurusan"
+                ],
+                "summary": "Mengambil semua jurusan yang ada.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data jurusan. (max 5 per page)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/jurusan"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Admin on Jurusan"
+                ],
+                "summary": "Mendaftarkan jurusan baru.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Data jurusan Baru.",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/jurusan"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data jurusan baru."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/jurusan/{id}": {
+            "get": {
+                "tags": [
+                    "Admin on Jurusan"
+                ],
+                "summary": "Mengambil data jurusan spesifik",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data jurusan yang dicari"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin on Jurusan"
+                ],
+                "summary": "Mengedit data jurusan.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Data jurusan (Edit).",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/jurusan"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data jurusan edited."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin on Jurusan"
+                ],
+                "summary": "Men-delete data jurusan.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data jurusan deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
                     }
                 }
             }
@@ -482,6 +872,12 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
                     }
                 }
             }
@@ -497,16 +893,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -534,16 +930,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     },
                     {
                         "name": "Data KRS (Edit).",
@@ -567,6 +963,18 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
                     }
                 }
             },
@@ -580,16 +988,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -601,6 +1009,240 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/konsentrasi": {
+            "get": {
+                "tags": [
+                    "Admin on Konsentrasi"
+                ],
+                "summary": "Mengambil semua Konsentrasi yang ada.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data Konsentrasi. (max 5 per page)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/konsentrasi"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Admin on Konsentrasi"
+                ],
+                "summary": "Mendaftarkan Konsentrasi baru.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Data Konsentrasi Baru.",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/konsentrasi"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data Konsentrasi baru."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    }
+                }
+            }
+        },
+        "/api/v1/admin/konsentrasi/{id}": {
+            "get": {
+                "tags": [
+                    "Admin on Konsentrasi"
+                ],
+                "summary": "Mengambil data Konsentrasi spesifik",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data Konsentrasi yang dicari"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin on Konsentrasi"
+                ],
+                "summary": "Mengedit data Konsentrasi.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Data Konsentrasi (Edit).",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/konsentrasi"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data Konsentrasi edited."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin on Konsentrasi"
+                ],
+                "summary": "Men-delete data Konsentrasi.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data Konsentrasi deleted."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    },
+                    "403": {
+                        "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
                     }
                 }
             }
@@ -680,6 +1322,12 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
                     }
                 }
             }
@@ -695,16 +1343,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -716,6 +1364,9 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
                     }
                 }
             },
@@ -729,16 +1380,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     },
                     {
                         "name": "Data Mahasiswa (Edit).",
@@ -765,6 +1416,15 @@
                     },
                     "404": {
                         "description": "Resource not found."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
                     }
                 }
             },
@@ -778,16 +1438,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -802,6 +1462,12 @@
                     },
                     "404": {
                         "description": "Resource not found."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
                     }
                 }
             }
@@ -881,6 +1547,12 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
                     }
                 }
             }
@@ -896,16 +1568,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -933,16 +1605,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     },
                     {
                         "name": "Data Mata Kuliah (Edit).",
@@ -966,6 +1638,18 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "409": {
+                        "description": "Conflict."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
                     }
                 }
             },
@@ -979,16 +1663,16 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
                         "name": "id",
                         "in": "path",
                         "required": true,
                         "type": "integer"
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -1000,6 +1684,15 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity."
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
                     }
                 }
             }
@@ -1076,6 +1769,15 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
                     }
                 }
             }
@@ -1112,6 +1814,15 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
                     }
                 }
             }
@@ -1157,6 +1868,15 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
                     }
                 }
             }
@@ -1202,6 +1922,15 @@
                     },
                     "403": {
                         "description": "Forbidden action."
+                    },
+                    "404": {
+                        "description": "Resource not found."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error."
                     }
                 }
             }
@@ -1435,6 +2164,30 @@
                 },
                 "status": {
                     "type": "enum('On Going', 'Ended')"
+                }
+            }
+        },
+        "jurusan": {
+            "properties": {
+                "jurusan_code": {
+                    "type": "string"
+                },
+                "jurusan_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "konsentrasi": {
+            "properties": {
+                "konsentrasi_code": {
+                    "type": "string"
+                },
+                "konsentrasi_name": {
+                    "type": "string"
+                },
+                "jurusan_id": {
+                    "type": "integer",
+                    "format": "int32"
                 }
             }
         },
